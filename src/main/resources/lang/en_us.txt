@@ -1,0 +1,45 @@
+region.all_populations=All populations
+region.africa=Africa
+region.europe=Europe
+region.east_asia=East asia
+region.america=America
+region.south_asia=South asia
+
+region.ALL=All Populations
+
+region.AFR=All Africans
+region.ACB=African Caribbean
+region.ASW=African American
+region.ESN=Esan
+region.GWD=Gambian
+region.LWK=Luhya
+region.MSL=Mende
+region.YRI=Yoruba
+
+region.EUR=All Europeans
+region.CEU=CEPH
+region.GBR=British
+region.FIN=Finnish
+region.IBS=Spanish
+region.TSI=Tuscan
+
+region.EAS=All East Asians
+region.CDX=Dai Chinese
+region.CHB=Han Chinese
+region.CHS=Southern Han Chinese
+region.JPT=Japanese
+region.KHV=Kinh Vietnamese
+region.CHD=Denver Chinese
+
+region.AMR=All Americans
+region.CLM=Colombian
+region.MXL=Mexican American
+region.PEL=Peruvian
+region.PUR=Puerto Rican
+
+region.SAS=All South Asians
+region.BEB=Bengali
+region.GIH=Gujarati Indian
+region.ITU=Indian Telugu
+region.PJL=Punjabi
+region.STU=Sri Lankan Tamil
