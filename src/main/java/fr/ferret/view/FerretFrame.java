@@ -1,23 +1,27 @@
 package fr.ferret.view;
 
-import fr.ferret.view.panel.HeaderPanel;
+import fr.ferret.view.panel.header.MenuPanel;
 import fr.ferret.view.panel.LocusPanel;
 import fr.ferret.view.panel.RegionPanel;
 
 import javax.swing.*;
 
+/**
+ * Main Ferret frame
+ */
 public class FerretFrame extends JFrame
 {
-    private final HeaderPanel headerPanel;
+    private final MenuPanel headerPanel;
     private final LocusPanel locusPanel;
     private final RegionPanel regionPanel;
 
     public FerretFrame() {
-        headerPanel = new HeaderPanel();
+        headerPanel = new MenuPanel(this);
         locusPanel = new LocusPanel();
         regionPanel = new RegionPanel();
 
         setTitle("Ferret v3");
+        setJMenuBar(headerPanel);
 
         JPanel panel = new JPanel();
         panel.add(locusPanel);
@@ -32,7 +36,15 @@ public class FerretFrame extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public MenuPanel getHeaderPanel() {
+        return headerPanel;
+    }
+
     public LocusPanel getLocusPanel() {
         return locusPanel;
+    }
+
+    public RegionPanel getRegionPanel() {
+        return regionPanel;
     }
 }

@@ -3,6 +3,10 @@ package fr.ferret.view.panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Locus panel <br>
+ * Selection of the genes parameters
+ */
 public class LocusPanel extends JPanel
 {
     private final JComboBox<String> chromosomeList;

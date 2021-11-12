@@ -1,15 +1,26 @@
 package fr.ferret;
 
+import fr.ferret.controller.FerretConfig;
 import fr.ferret.view.FerretFrame;
-import fr.ferret.view.Locale;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class FerretTest
 {
-    public static Locale locale;
+    /**
+     * Ressources du programme (langue et propriétés)
+     */
+    public static ResourceBundle locale;
+
+    /**
+     * Paramètres du programme
+     */
+    public static FerretConfig config = new FerretConfig();
 
     public static void main(String[] args) {
-        locale = new Locale("en_us");
+        locale = ResourceBundle.getBundle("ferret", Locale.FRENCH);
         FerretFrame frame = new FerretFrame(); //Show ferret frame
         frame.setVisible(true);
     }

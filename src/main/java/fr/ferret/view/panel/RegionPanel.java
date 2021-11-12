@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Region panel <br>
+ * Selection of the regions of the 1KG project
+ */
 public class RegionPanel extends JPanel {
     private final List<SubPanel> regions = new ArrayList<>();
 
@@ -16,7 +20,7 @@ public class RegionPanel extends JPanel {
         setLayout(new GridLayout(2, 3));
         setBorder(BorderFactory.createEmptyBorder(0, 20, 5, 20));
 
-        for (Region region : Region.values()) {
+        for (Region region : FerretTest.config.getSelectedVersion().getRegions()) {
             SubPanel panel = new SubPanel(region);
             regions.add(panel);
             add(panel);
@@ -32,7 +36,7 @@ public class RegionPanel extends JPanel {
         private final Region region;
 
         public SubPanel(Region region) {
-            JLabel label = new JLabel(FerretTest.locale.translate("region." + region.name().toLowerCase(Locale.ROOT))); //TODO TRADUIRE
+            JLabel label = new JLabel(FerretTest.locale.getString("region." + region.getName().toLowerCase(Locale.ROOT)));
             label.setFont(new Font("Serif", Font.BOLD, 20));
             add(label);
 
@@ -40,7 +44,7 @@ public class RegionPanel extends JPanel {
             this.region = region;
             for (int i = 0; i < checkBoxes.length; i++) {
                 checkBoxes[i] = new JCheckBox(region.getZones()[i] + " " +
-                        FerretTest.locale.translate("region." + region.getZones()[i]) +
+                        FerretTest.locale.getString("region." + region.getZones()[i]) +
                         " (n=" + region.getIndividualCount()[i] + ")");
                 add(checkBoxes[i]);
                 if (region.getIndividualCount()[i] == 0) {
@@ -51,7 +55,7 @@ public class RegionPanel extends JPanel {
                 boolean state = !checkBoxes[0].isSelected();
                 setCheckBoxesState(1, state);
 
-                if (region == Region.ALL_POPULATIONS) {
+                if (region == FerretTest.config.getSelectedVersion().getRegions()[0]) {
                     for (SubPanel panel : RegionPanel.this.regions) {
                         if (panel != this) {
                             panel.setCheckBoxesState(0, state);
