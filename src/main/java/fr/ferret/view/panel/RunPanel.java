@@ -17,7 +17,7 @@ public class RunPanel extends JPanel {
 
         JButton runbutton = new JButton("Run Ferret, Run!");
 
-        JLabel fileLocation = new JLabel("File location: None Selected");
+        //JLabel fileLocation = new JLabel("File location: None Selected");
 
         runbutton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
@@ -28,7 +28,7 @@ public class RunPanel extends JPanel {
                         if(returnVal == JFileChooser.APPROVE_OPTION) {
                             File file = saveFileChooser.getSelectedFile();
                             fileNameAndPath = file.getAbsolutePath();
-                            fileLocation.setText("File Location: " + fileNameAndPath);
+                            //fileLocation.setText("File Location: " + fileNameAndPath);
                         }
                     }
                 });
@@ -39,13 +39,6 @@ public class RunPanel extends JPanel {
         c.gridx =3;
         c.gridy =0;
         this.add(runbutton);
-
-
-        c.fill =GridBagConstraints.HORIZONTAL;
-        c.weightx =0.5;
-        c.gridx =3;
-        c.gridy =2;
-        this.add(fileLocation);
 
 
 
