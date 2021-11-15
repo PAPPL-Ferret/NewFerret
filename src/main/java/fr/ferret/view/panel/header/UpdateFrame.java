@@ -18,9 +18,9 @@ public class UpdateFrame extends JFrame
     JPanel updateBarHolder = new JPanel();
     JPanel updateButtonHolder = new JPanel();
     JProgressBar updateProgressBar = new JProgressBar();
-    JLabel updateLabel = new JLabel("Checking for update...");
+    JLabel updateLabel = new JLabel(FerretTest.locale.getString("update.checking"));
     JLabel updateDetailLabel = new JLabel("");
-    JButton updateOK = new JButton("OK");
+    JButton updateOK = new JButton(FerretTest.locale.getString("settings.ok"));
 
     public UpdateFrame() {
         super(FerretTest.locale.getString("update.title"));
@@ -42,11 +42,7 @@ public class UpdateFrame extends JFrame
         updatePanel.add(updateButtonHolder);
         updateButtonHolder.setLayout(new BoxLayout(updateButtonHolder, BoxLayout.X_AXIS));
         updateButtonHolder.add(updateOK);
-        updateOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                UpdateFrame.this.dispose();
-            }
-        });
+        updateOK.addActionListener(e -> UpdateFrame.this.dispose());
         this.pack();
     }
     
@@ -59,7 +55,7 @@ public class UpdateFrame extends JFrame
             final UpdateChecker updateWorker = new UpdateChecker();
             updateWorker.addPropertyChangeListener(arg01 -> {
                 if (arg01.getPropertyName().equals("state")) {
-                    if ((SwingWorker.StateValue) arg01.getNewValue() == SwingWorker.StateValue.DONE) {
+                    if (arg01.getNewValue() == SwingWorker.StateValue.DONE) {
                         String updateReason = updateWorker.updateStatus();
                         Boolean urgentUpdate = updateWorker.urgentUpdate();
                         Boolean needUpdate = updateWorker.needUpdate();
@@ -69,15 +65,16 @@ public class UpdateFrame extends JFrame
                             updateBarHolder.remove(updateProgressBar);
                             LinkLabel ferretUpdate = null;
                             try {
-                                ferretUpdate = new LinkLabel(new URI("http://limousophie35.github.io/Ferret/"), "http://limousophie35.github.io/Ferret/");
+                                String link = FerretTest.locale.getString("update.link");
+                                ferretUpdate = new LinkLabel(new URI(link), link);
                             } catch (URISyntaxException e) {
                                 e.printStackTrace();
                             }
-                            JLabel updateFerretLabel = new JLabel("Please update Ferret at:");
+                            JLabel updateFerretLabel = new JLabel(FerretTest.locale.getString("update.msg"));
                             updateBarHolder.add(updateFerretLabel);
                             updateBarHolder.repaint();
-                            updateFerretLabel.setText("");
-                            updateFerretLabel.setText("Please update Ferret at:");
+                           // updateFerretLabel.setText("");
+                           // updateFerretLabel.setText("Please update Ferret at:");
                             ferretUpdate.setBackgroundColor(updatePanel.getBackground());
                             ferretUpdate.init();
                             ferretUpdate.setAlignmentX(LEFT_ALIGNMENT);
@@ -90,7 +87,6 @@ public class UpdateFrame extends JFrame
                         }
                     }
                 }
-
             });
             updateWorker.execute();
         }

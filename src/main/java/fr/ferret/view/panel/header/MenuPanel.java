@@ -31,7 +31,6 @@ public class MenuPanel extends JMenuBar {
         this.add(ferretMenu);
         this.add(helpMenu);
 
-
         // update window
         UpdateFrame updateFrame = new UpdateFrame();
         updateMenuItem.addActionListener(arg0 -> {

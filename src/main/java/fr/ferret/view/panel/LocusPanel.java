@@ -1,5 +1,7 @@
 package fr.ferret.view.panel;
 
+import fr.ferret.FerretTest;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,15 +20,15 @@ public class LocusPanel extends JPanel
         // applique le gestionnaire de placement au panneau
         this.setLayout(gestionnaire);
 
-        JLabel lab_input = new JLabel("Input Locus:");
-        JLabel lab_chromosome = new JLabel("Chromosome:");
+        JLabel lab_input = new JLabel(FerretTest.locale.getString("locus.input"));
+        JLabel lab_chromosome = new JLabel(FerretTest.locale.getString("locus.chromosome"));
 
-        String[] dayStrings = {" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
+        String[] chromosomes = {" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"};
 
         //Create the combo box, select item at index 4.
         //Indices start at 0, so 4 specifies the pig.
-        chromosomeList = new JComboBox<>(dayStrings);
+        chromosomeList = new JComboBox<>(chromosomes);
         //dayList.setEditable(true);
         chromosomeList.setSelectedIndex(0);
         /*chromosomeList.addActionListener(new ActionListener() {
@@ -35,19 +37,19 @@ public class LocusPanel extends JPanel
             }
         });*/
 
-        JLabel lab_start = new JLabel("Start:");
-        JLabel lab_end = new JLabel("End:");
+        JLabel lab_start = new JLabel(FerretTest.locale.getString("locus.start"));
+        JLabel lab_end = new JLabel(FerretTest.locale.getString("locus.end"));
 
         inputStart = new JTextField();
         inputEnd = new JTextField();
 
-        JLabel lab_help_title = new JLabel("Help :");
+        JLabel lab_help_title = new JLabel(FerretTest.locale.getString("locus.help"));
 
         //Font f = lab_help_title.getFont();
         //lab_help_title.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
 
+        //TODO IMPROVE HELP
         JLabel lab_help = new JLabel("Input hg19 human genome version coordinates in bp.");
-
         JLabel lab_help_2 = new JLabel("Example for CCR5: Chromosome: 3 Start: 46411633 End: 46417697");
 
         GridBagConstraints c = new GridBagConstraints();

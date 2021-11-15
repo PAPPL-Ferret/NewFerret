@@ -21,7 +21,7 @@ public class FerretFrame extends JFrame
         headerPanel = new MenuPanel(this);
         locusPanel = new LocusPanel();
         regionPanel = new RegionPanel();
-        runPanel = new RunPanel();
+        runPanel = new RunPanel(this);
 
         setTitle("Ferret v3");
         setJMenuBar(headerPanel);
@@ -50,5 +50,9 @@ public class FerretFrame extends JFrame
 
     public RegionPanel getRegionPanel() {
         return regionPanel;
+    }
+
+    public RunPanel getRunPanel() {
+        return runPanel;
     }
 }

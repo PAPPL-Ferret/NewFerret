@@ -46,7 +46,7 @@ public class SettingsFrame extends JFrame {
 
         //Phases
         {
-            JLabel vcfVersionLabel = new JLabel("1000 Genomes Version");
+            JLabel vcfVersionLabel = new JLabel(FerretTest.locale.getString("settings.genversion"));
             vcfVersionLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
             settingsPanel.add(vcfVersionLabel);
 
@@ -66,8 +66,8 @@ public class SettingsFrame extends JFrame {
         //TODO SI LE TEMPS : une barre pour le min, une barre pour le max
 
         JSlider mafSlider = new JSlider(0, 5000, 0);
-        JLabel MAFThresholdLabel = new JLabel("MAF Threshold: ");
-        JLabel MAFOptionLabel = new JLabel("Minor Allele Frequency (MAF)");
+        JLabel MAFThresholdLabel = new JLabel(FerretTest.locale.getString("settings.mafthresold"));
+        JLabel MAFOptionLabel = new JLabel(FerretTest.locale.getString("settings.maf"));
 
         JPanel mafPanel = new JPanel();
         JPanel mafESPPanel = new JPanel();
@@ -91,18 +91,16 @@ public class SettingsFrame extends JFrame {
             mafText.setValue(new Double(0));
             mafPanel.add(mafText);
 
-            mafText.addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent evt) {
-                    double localMAFThreshold = ((Number) mafText.getValue()).doubleValue();
-                    if (localMAFThreshold > 0.5) {
-                        localMAFThreshold = 0.5;
-                        mafText.setValue(localMAFThreshold);
-                    } else if (localMAFThreshold < 0.0) {
-                        localMAFThreshold = 0.0;
-                        mafText.setValue(localMAFThreshold);
-                    }
-                    mafSlider.setValue((int) (localMAFThreshold * 10000));
+            mafText.addPropertyChangeListener(evt -> {
+                double localMAFThreshold = ((Number) mafText.getValue()).doubleValue();
+                if (localMAFThreshold > 0.5) {
+                    localMAFThreshold = 0.5;
+                    mafText.setValue(localMAFThreshold);
+                } else if (localMAFThreshold < 0.0) {
+                    localMAFThreshold = 0.0;
+                    mafText.setValue(localMAFThreshold);
                 }
+                mafSlider.setValue((int) (localMAFThreshold * 10000));
             });
 
             mafSlider.setMajorTickSpacing(1000);
@@ -114,16 +112,12 @@ public class SettingsFrame extends JFrame {
             mafSlider.setValue(0);
             mafSlider.setPaintLabels(true);
             mafPanel.add(mafSlider);
-            mafSlider.addChangeListener(new ChangeListener() {
-                public void stateChanged(ChangeEvent e) {
-                    double localMAFThreshold = mafSlider.getValue();
-                    mafText.setValue(localMAFThreshold / 10000);
-                }
+            mafSlider.addChangeListener(e -> {
+                double localMAFThreshold = mafSlider.getValue();
+                mafText.setValue(localMAFThreshold / 10000);
             });
             mafPanel.add(questionMarkMAFThreshold);
-            questionMarkMAFThreshold.setToolTipText("<html>The MAF threshold is applied to the selected 1000 Genomes populations<br>"
-                    + "<u>Example:</u> For a MAF threshold of 0.05 (i.e. 5%), Ferret will only output variants with <br> a frequency >= 5% in the "
-                    + "selected populations.</html>");
+            questionMarkMAFThreshold.setToolTipText(FerretTest.locale.getString("settings.maf.help"));
             mafPanel.add(Box.createHorizontalGlue());
             mafESPPanel.setLayout(new BoxLayout(mafESPPanel, BoxLayout.X_AXIS));
             mafESPPanel.setAlignmentX(LEFT_ALIGNMENT);
@@ -133,14 +127,14 @@ public class SettingsFrame extends JFrame {
 
         //File output type
         settingsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        JLabel filesLabel = new JLabel("Output Files");
+        JLabel filesLabel = new JLabel(FerretTest.locale.getString("settings.outfiles"));
         settingsPanel.add(filesLabel);
         filesLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
 
         ButtonGroup fileOutputButtons = new ButtonGroup();
-        JRadioButton allFilesButton = new JRadioButton("Allele Frequencies (.frq) + Plink/HaploView (.map/.ped/.info) [default]");
-        JRadioButton freqFileButton = new JRadioButton("Allele Frequencies (.frq) only");
-        JRadioButton vcfFileButton = new JRadioButton("VCF file only");
+        JRadioButton allFilesButton = new JRadioButton(FerretTest.locale.getString("settings.out.frqmap"));
+        JRadioButton freqFileButton = new JRadioButton(FerretTest.locale.getString("settings.out.frq"));
+        JRadioButton vcfFileButton = new JRadioButton(FerretTest.locale.getString("settings.out.vcf"));
         {
             fileOutputButtons.add(allFilesButton);
             fileOutputButtons.add(freqFileButton);
@@ -153,7 +147,7 @@ public class SettingsFrame extends JFrame {
 
         //Human genome versions
         {
-            JLabel hgVersionLabel = new JLabel("Human Genome Version");
+            JLabel hgVersionLabel = new JLabel(FerretTest.locale.getString("settings.hugversion"));
             settingsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
             settingsPanel.add(hgVersionLabel);
             hgVersionLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
@@ -170,8 +164,8 @@ public class SettingsFrame extends JFrame {
         //Ok/Cancel buttons
 
         JPanel settingsButtonPanel = new JPanel();
-        JButton settingsOK = new JButton("OK");
-        JButton settingsCancel = new JButton("Cancel");
+        JButton settingsOK = new JButton(FerretTest.locale.getString("settings.ok"));
+        JButton settingsCancel = new JButton(FerretTest.locale.getString("settings.cancel"));
 
         settingsButtonPanel.setAlignmentX(LEFT_ALIGNMENT);
         settingsButtonPanel.setLayout(new BoxLayout(settingsButtonPanel, BoxLayout.X_AXIS));
@@ -237,15 +231,15 @@ public class SettingsFrame extends JFrame {
                 }
             }
             if (selectedv == null) {
-                throw new IllegalStateException("No human version selected");
+                throw new IllegalStateException("No human gene version selected");
             }
             config.setSelectedHumanGenome(selectedv);
 
             //TODO LINK WITH LOCUS PANEL : CONTROLLER ?
             if (config.getSelectedHumanGenome() == HumanGenomeVersions.V38) {
-                questionMarkLocusInput.setToolTipText("<html>Input hg38 human genome version coordinates in bp. <br><u> Example for CCR5:</u> Chromosome: 3 Start: 46370142 End: 46376206</html>");
+                questionMarkLocusInput.setToolTipText("hg38");
             } else if (config.getSelectedHumanGenome() == HumanGenomeVersions.V19) {
-                questionMarkLocusInput.setToolTipText("<html>Input hg19 human genome version coordinates in bp. <br><u> Example for CCR5:</u> Chromosome: 3 Start: 46411633 End: 46417697</html>");
+                questionMarkLocusInput.setToolTipText("hg19");
             }
 
             SettingsFrame.this.dispose();
