@@ -49,8 +49,8 @@ public class LocusPanel extends JPanel
         //lab_help_title.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
 
         //TODO IMPROVE HELP
-        JLabel lab_help = new JLabel("Input hg19 human genome version coordinates in bp.");
-        JLabel lab_help_2 = new JLabel("Example for CCR5: Chromosome: 3 Start: 46411633 End: 46417697");
+        JLabel lab_help = new JLabel("Entrer les coordonnées hg19 en bp de la version du génome humain.");
+        JLabel lab_help_2 = new JLabel("Exemple pour CCR5: Chromosome: 3 Début: 46411633 Fin: 46417697");
 
         GridBagConstraints c = new GridBagConstraints();
         // natural height, maximum width
