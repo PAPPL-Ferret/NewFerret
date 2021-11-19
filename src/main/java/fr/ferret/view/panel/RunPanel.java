@@ -22,11 +22,11 @@ public class RunPanel extends JPanel {
         runButton.setPreferredSize(new Dimension(300, 60));
         //JLabel fileLocation = new JLabel("File location: None Selected");
 
-        GridBagConstraints c = new GridBagConstraints();
+        /*GridBagConstraints c = new GridBagConstraints();
         c.fill =GridBagConstraints.HORIZONTAL;
         c.weightx =0.5;
         c.gridx =3;
-        c.gridy =0;
+        c.gridy =0;*/
         this.add(runButton);
 
         listener = new RunButtonListener(frame, runButton);

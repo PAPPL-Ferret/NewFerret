@@ -58,6 +58,7 @@ public class LocusPanel extends JPanel
         c.weightx = 0.5;
         c.gridx = 1;
         c.gridy = 0;
+        lab_input.setFont(new Font("Serif", Font.BOLD, 14));
         this.add(lab_input, c);
 
         // natural height, maximum width
@@ -107,12 +108,12 @@ public class LocusPanel extends JPanel
         c.weightx = 0.5;
         c.gridx = 2;
         c.gridy = 6;
-        this.add(lab_help, c);
+        //this.add(lab_help, c);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
+        /*c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 2;
-        c.gridy = 7;
+        c.gridy = 7;*/
         this.add(lab_help_2, c);
     }
 

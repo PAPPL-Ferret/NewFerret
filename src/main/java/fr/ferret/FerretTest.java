@@ -5,10 +5,12 @@ import fr.ferret.view.FerretFrame;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 
 public class FerretTest
 {
+    public static final Logger log = Logger.getLogger("Ferret");
     /**
      * Ressources du programme (langue et propriétés)
      */

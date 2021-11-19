@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class RunButtonListener implements ActionListener {
     private final FerretFrame frame;
@@ -151,6 +152,7 @@ public class RunButtonListener implements ActionListener {
         }
 
         if (isChrSelected && populationSelected && startSelected && endSelected && startEndValid && withinRange) {
+            FerretTest.log.log(Level.INFO, "Starting gene research...");
             //TODO ça, doit être dans le modèle
 
             /*inputRegion[] queries = {new inputRegion(chrSelected, Integer.parseInt(startPosition), Integer.parseInt(endPosition))};

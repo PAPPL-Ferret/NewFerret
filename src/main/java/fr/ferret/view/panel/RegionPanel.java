@@ -18,7 +18,7 @@ public class RegionPanel extends JPanel {
 
     public RegionPanel() {
         setLayout(new GridLayout(2, 3));
-        setBorder(BorderFactory.createEmptyBorder(0, 20, 5, 20));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         for (Region region : FerretTest.config.getSelectedVersion().getRegions()) {
             SubPanel panel = new SubPanel(region);
@@ -46,6 +46,11 @@ public class RegionPanel extends JPanel {
                 checkBoxes[i] = new JCheckBox(region.getZones()[i] + " " +
                         FerretTest.locale.getString("region." + region.getZones()[i]) +
                         " (n=" + region.getIndividualCount()[i] + ")");
+                if(i == 0) {
+                    checkBoxes[i].setFont(new Font("Serif", Font.BOLD, 14));
+                } else {
+                    checkBoxes[i].setFont(new Font("Serif", Font.PLAIN, 14));
+                }
                 add(checkBoxes[i]);
                 if (region.getIndividualCount()[i] == 0) {
                     checkBoxes[i].setEnabled(false);
