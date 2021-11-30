@@ -20,6 +20,7 @@ public class RunPanel extends JPanel {
 
         JButton runButton = new JButton(FerretTest.locale.getString("run.button"));
         runButton.setPreferredSize(new Dimension(300, 60));
+        runButton.setBackground(new Color(201, 157, 240));
         //JLabel fileLocation = new JLabel("File location: None Selected");
 
         /*GridBagConstraints c = new GridBagConstraints();

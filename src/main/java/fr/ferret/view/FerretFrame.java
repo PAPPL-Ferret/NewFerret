@@ -46,6 +46,7 @@ public class FerretFrame extends JFrame
         setJMenuBar(headerPanel);
 
         JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(locusPanel);
         panel.add(regionPanel);
         panel.add(runPanel);
