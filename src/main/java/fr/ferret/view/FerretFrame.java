@@ -10,6 +10,7 @@ import fr.ferret.view.panel.VariantPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -47,20 +48,20 @@ public class FerretFrame extends JFrame
         runPanel = new RunPanel(this);
 
         //Créer le conteneur des onglets
-        JTabbedPane onglets = new JTabbedPane();
+        JTabbedPane tabs = new JTabbedPane();
         //Définir la position de conteneur d'onglets
-        onglets.setBounds(40,20,300,300);
+        tabs.setBounds(40,20,300,300);
         //Associer chaque panneau à l'onglet correspondant
-        onglets.add("Locus", locusPanel);
-        onglets.add("Gene", genePanel);
-        onglets.add("Variant", variantPanel);
+        tabs.add("Locus", locusPanel);
+        tabs.add("Gene", genePanel);
+        tabs.add("Variant", variantPanel);
 
         setTitle("Ferret v3");
         setJMenuBar(headerPanel);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(onglets);
+        panel.add(tabs);
         panel.add(regionPanel);
         panel.add(runPanel);
 
@@ -69,7 +70,7 @@ public class FerretFrame extends JFrame
         pack();
 
         //maFrame.add(new JButton("Button 1")); //SwingConstants.CENTER
-        setSize(800,790);
+       // setSize(800,790);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

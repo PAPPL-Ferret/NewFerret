@@ -14,8 +14,14 @@ import java.util.Locale;
  * Selection of the regions of the 1KG project
  */
 public class RegionPanel extends JPanel {
+    /**
+     * Panels for each supported {@link Region}
+     */
     private final List<SubPanel> regions = new ArrayList<>();
 
+    /**
+     * Inits a new RegionPanel
+     */
     public RegionPanel() {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
@@ -28,8 +34,10 @@ public class RegionPanel extends JPanel {
         JPanel container = new JPanel();
         container.setLayout(new GridLayout(2, 3));
 
-        for (Region region : FerretTest.config.getSelectedVersion().getRegions()) {
-            SubPanel panel = new SubPanel(region);
+        Region[] regions1 = FerretTest.config.getSelectedVersion().getRegions();
+        for (int i = 0; i < regions1.length; i++) {
+            Region region = regions1[i];
+            SubPanel panel = new SubPanel(region, i >= 3 ? 7 : 9);
             regions.add(panel);
             container.add(panel);
         }
@@ -37,22 +45,44 @@ public class RegionPanel extends JPanel {
         add(container, BorderLayout.CENTER);
     }
 
+    /**
+     * @return Panels for each supported {@link Region}
+     */
     public List<SubPanel> getRegions() {
         return regions;
     }
 
+    /**
+     * A JPanel containing a {@link Region} <br>
+     * Contains all the selectable zones of the region
+     */
     public class SubPanel extends JPanel {
-        private final JCheckBox[] checkBoxes;
+        /**
+         * The region displayed on this panel
+         */
         private final Region region;
+        /**
+         * The checkboxes for each zone of the region
+         */
+        private final JCheckBox[] checkBoxes;
 
-        public SubPanel(Region region) {
+        /**
+         * Creates a panel for the given region
+         * @param region The region
+         * @param lines The number of lines of the layout, to keep coherence with other displayed SubPanels
+         */
+        public SubPanel(Region region, int lines) {
+            this.region = region;
+            this.setLayout(new GridLayout(lines, 1));
+
+            //Title
             JLabel label = new JLabel(FerretTest.locale.getString("region." + region.getName().toLowerCase(Locale.ROOT)));
             label.setFont(new Font("Calibri", Font.BOLD, 20));
-            add(label);
             label.setForeground(new Color(131, 55, 192));
+            add(label);
 
+            //Zones selection
             this.checkBoxes = new JCheckBox[region.getZones().length];
-            this.region = region;
             for (int i = 0; i < checkBoxes.length; i++) {
                 checkBoxes[i] = new JCheckBox(region.getZones()[i] + " " +
                         FerretTest.locale.getString("region." + region.getZones()[i]) +
@@ -79,9 +109,13 @@ public class RegionPanel extends JPanel {
                     }
                 }
             });
-            setLayout(new GridLayout(9, 1));
         }
 
+        /**
+         * Changes the states of all zone checkboxes between start and checkBoxes.length
+         * @param start The start offset
+         * @param state The new selected state of the checkboxes
+         */
         private void setCheckBoxesState(int start, boolean state) {
             for (int i = start; i < checkBoxes.length; i++) {
                 if (region.getIndividualCount()[i] != 0) {

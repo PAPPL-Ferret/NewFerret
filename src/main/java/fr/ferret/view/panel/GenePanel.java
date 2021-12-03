@@ -17,13 +17,12 @@ public class GenePanel extends JPanel
 
     public GenePanel() {
         this.setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
-        JPanel panel = new JPanel();
+        JPanel inputPanel = new JPanel();
         GridBagLayout gestionnaire = new GridBagLayout();
         // applique le gestionnaire de placement au panneau
-        panel.setLayout(gestionnaire);
+        inputPanel.setLayout(gestionnaire);
 
-        JLabel lab_input = new JLabel(FerretTest.locale.getString("gene.input"), SwingConstants.LEFT);
+        JLabel titleLabel = new JLabel(FerretTest.locale.getString("gene.input"), SwingConstants.LEFT);
         JLabel lab_or = new JLabel(FerretTest.locale.getString("gene.or"));
 
         JLabel lab_inputnameorid = new JLabel(FerretTest.locale.getString("gene.inputnameorid"));
@@ -39,7 +38,7 @@ public class GenePanel extends JPanel
 
         //TODO IMPROVE HELP
         JLabel lab_help = new JLabel("Entrer les coordonnées hg19 en bp de la version du génome humain.");
-        JLabel lab_help_2 = new JLabel("Aide : Exemple pour CCR5: Chromosome: 3 Début: 46411633 Fin: 46417697", SwingConstants.CENTER);
+        JLabel helpLabel = new JLabel("Aide : Exemple pour CCR5: Chromosome: 3 Début: 46411633 Fin: 46417697", SwingConstants.CENTER);
 
         GridBagConstraints c = new GridBagConstraints();
         // natural height, maximum width
@@ -47,9 +46,9 @@ public class GenePanel extends JPanel
         c.weightx = 0.3;
         c.gridx = 1;
         c.gridy = 0;*/
-        lab_input.setFont(new Font("Calibri", Font.BOLD, 24));
-        lab_input.setForeground(new Color(18, 0, 127));
-        this.add(lab_input, BorderLayout.NORTH);
+        titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(18, 0, 127));
+        this.add(titleLabel, BorderLayout.NORTH);
 
         // natural height, maximum width
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -72,13 +71,13 @@ public class GenePanel extends JPanel
         c.gridy = 3;
         lab_inputnameorid.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 10));
         lab_inputnameorid.setFont(new Font(lab_inputnameorid.getFont().getFontName(), Font.PLAIN, 16));
-        panel.add(lab_inputnameorid, c);
+        inputPanel.add(lab_inputnameorid, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.8;
         c.gridx = 2;
         c.gridy = 3;
-        panel.add(inputStart, c);
+        inputPanel.add(inputStart, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.3;
@@ -92,10 +91,16 @@ public class GenePanel extends JPanel
         c.weightx = 0.8;
         c.gridx = 2;
         c.gridy = 4;
-        panel.add(inputEnd, c);
+        inputPanel.add(inputEnd, c);
 
-        add(panel, BorderLayout.CENTER);
-        add(lab_help_2, BorderLayout.SOUTH);
+        add(inputPanel, BorderLayout.CENTER);
+        add(helpLabel, BorderLayout.SOUTH);
+
+        //Borders
+        setBorder(BorderFactory.createLineBorder(new Color(131, 55, 192, 140), 4));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+        helpLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
     public JTextField getInputStart() {

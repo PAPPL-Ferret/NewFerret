@@ -22,7 +22,7 @@ public class Region {
     /**
      * Creates a new Region
      *
-     * @param name
+     * @param name The name of the region (for translation)
      * @param zones           The zones
      * @param individualCount The individuals count for each zone, respectively
      */

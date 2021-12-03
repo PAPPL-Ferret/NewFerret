@@ -14,9 +14,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 
+/**
+ * Listens events of the run button and sends input data to the model
+ */
 public class RunButtonListener implements ActionListener {
+    /**
+     * The ferret frame
+     */
     private final FerretFrame frame;
 
+    /**
+     * @param frame The ferret frame
+     * @param runButton The button to listen
+     */
     public RunButtonListener(FerretFrame frame, JButton runButton) {
         this.frame = frame;
         runButton.addActionListener(this);
@@ -38,14 +48,14 @@ public class RunButtonListener implements ActionListener {
     }
 
     private void validateInfosAndRun(String fileNameAndPath) {
+        //Reset borders
         getFrame().getRegionPanel().setBorder(null);
         getFrame().getLocusPanel().getChromosomeList().setBorder(null);
         getFrame().getLocusPanel().getInputStart().setBorder(null);
         getFrame().getLocusPanel().getInputEnd().setBorder(null);
 
-
+        //Selected populations for the model
         ArrayList<CharSequence> populations = new ArrayList<>();
-
         RegionPanel panel = frame.getRegionPanel();
         for (RegionPanel.SubPanel regionPanel : panel.getRegions()) {
             for (int i = 0; i < regionPanel.getCheckBoxes().length; i++) {
@@ -61,6 +71,8 @@ public class RunButtonListener implements ActionListener {
         // Chr position input method
         String chrSelected = (String) frame.getLocusPanel().getChromosomeList().getSelectedItem();
         boolean isChrSelected = !chrSelected.equals(" ");
+
+        //TODO DEPENDS ON THE SELECTED PANEL
         String startPosition = frame.getLocusPanel().getInputStart().getText();
         String endPosition = frame.getLocusPanel().getInputEnd().getText();
 
@@ -84,8 +96,9 @@ public class RunButtonListener implements ActionListener {
             if (startSelected && endSelected) {
                 startEndValid = (tempEndPos >= tempStartPos);
                 if (startEndValid) {
+                    Map<String, Integer> chrMap = new HashMap<>();
                     if (FerretTest.config.getSelectedHumanGenome() == HumanGenomeVersions.V19) {
-                        Map<String, Integer> chrMap = new HashMap<>();
+                        //Avoid too much if/else
                         chrMap.put("X", 155270560);
                         chrMap.put("1", 249250621);
                         chrMap.put("2", 243199373);
@@ -116,7 +129,6 @@ public class RunButtonListener implements ActionListener {
                             chrEndBound = validEnd;
                         }
                     } else {
-                        Map<String, Integer> chrMap = new HashMap<>();
                         chrMap.put("X", 156040895);
                         chrMap.put("1", 248956422);
                         chrMap.put("2", 242193529);
@@ -151,6 +163,7 @@ public class RunButtonListener implements ActionListener {
             }
         }
 
+        //Valid input
         if (isChrSelected && populationSelected && startSelected && endSelected && startEndValid && withinRange) {
             FerretTest.log.log(Level.INFO, "Starting gene research...");
             //TODO ça, doit être dans le modèle
@@ -290,7 +303,7 @@ public class RunButtonListener implements ActionListener {
                 }
             });
             currFerretWorker.execute();*/
-        } else {
+        } else { //Invalid input
             StringBuffer errorMessage = new StringBuffer(FerretTest.locale.getString("run.fixerrors"));
             if (!isChrSelected) {
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectchr"));
