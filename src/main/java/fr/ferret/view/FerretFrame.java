@@ -20,11 +20,13 @@ import java.util.logging.Level;
 public class FerretFrame extends JFrame
 {
     private final MenuPanel headerPanel;
+    private final JTabbedPane inputTabs;
     private final LocusPanel locusPanel;
     private final RegionPanel regionPanel;
     private final RunPanel runPanel;
     private final GenePanel genePanel;
     private final VariantPanel variantPanel;
+
 
     public FerretFrame() {
         //Set look
@@ -48,20 +50,20 @@ public class FerretFrame extends JFrame
         runPanel = new RunPanel(this);
 
         //Créer le conteneur des onglets
-        JTabbedPane tabs = new JTabbedPane();
+        inputTabs = new JTabbedPane();
         //Définir la position de conteneur d'onglets
-        tabs.setBounds(40,20,300,300);
+        inputTabs.setBounds(40,20,300,300);
         //Associer chaque panneau à l'onglet correspondant
-        tabs.add("Locus", locusPanel);
-        tabs.add("Gene", genePanel);
-        tabs.add("Variant", variantPanel);
+        inputTabs.add("Locus", locusPanel);
+        inputTabs.add("Gene", genePanel);
+        inputTabs.add("Variant", variantPanel);
 
         setTitle("Ferret v3");
         setJMenuBar(headerPanel);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(tabs);
+        panel.add(inputTabs);
         panel.add(regionPanel);
         panel.add(runPanel);
 
@@ -78,8 +80,20 @@ public class FerretFrame extends JFrame
         return headerPanel;
     }
 
+    public JTabbedPane getInputTabs() {
+        return inputTabs;
+    }
+
     public LocusPanel getLocusPanel() {
         return locusPanel;
+    }
+
+    public GenePanel getGenePanel() {
+        return genePanel;
+    }
+
+    public VariantPanel getVariantPanel() {
+        return variantPanel;
     }
 
     public RegionPanel getRegionPanel() {
