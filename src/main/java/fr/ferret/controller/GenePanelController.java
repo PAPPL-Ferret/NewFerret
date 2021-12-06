@@ -7,15 +7,11 @@ import fr.ferret.view.panel.RegionPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class GenePanelController implements IInputController
@@ -28,15 +24,15 @@ public class GenePanelController implements IInputController
         this.genePanel = genePanel;
     }
 
-    public void validateInfosAndRun(String geneFileNameAndPath) {
+    public void validateInfosAndRun(String fileNameAndPath) {
         //Reset borders
         frame.getRegionPanel().setBorder(null);
-        //TODO
+        genePanel.getInputField().setBorder(null);
 
         //Traitement
-        JTextField geneNameField = genePanel.getInputStart();
-        JRadioButton geneNameRadioButton = null;
-        JRadioButton geneNCBIRadioButton = null;
+        JTextField geneNameField = genePanel.getInputField();
+        JRadioButton geneNameRadioButton = genePanel.getRdoName();
+        JRadioButton geneNCBIRadioButton = genePanel.getRdoID();
 
         //Selected populations for the model
         ArrayList<CharSequence> populations = new ArrayList<>();
@@ -54,6 +50,7 @@ public class GenePanelController implements IInputController
         String geneString = geneNameField.getText();
         String[] geneListArray = null;
         boolean geneListInputted = geneString.length() > 0;
+        String geneFileNameAndPath = genePanel.getFileSelector().getSelectedFile() == null ? null : genePanel.getFileSelector().getSelectedFile().getAbsolutePath();
         boolean geneFileImported = geneFileNameAndPath != null;
         boolean geneFileError = false;
         boolean geneFileExtensionError = false;

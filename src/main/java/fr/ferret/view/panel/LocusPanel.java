@@ -9,8 +9,7 @@ import java.awt.*;
  * Locus panel <br>
  * Selection of the genes parameters
  */
-public class LocusPanel extends JPanel
-{
+public class LocusPanel extends JPanel {
     private final JComboBox<String> chromosomeList;
     private final JTextField inputStart;
     private final JTextField inputEnd;
@@ -46,11 +45,6 @@ public class LocusPanel extends JPanel
         inputEnd = new JTextField();
 
         GridBagConstraints c = new GridBagConstraints();
-        // natural height, maximum width
-      /*  c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.3;
-        c.gridx = 1;
-        c.gridy = 0;*/
 
         // natural height, maximum width
         c.fill = GridBagConstraints.HORIZONTAL;
