@@ -1,136 +1,111 @@
 package fr.ferret.view.panel;
 
 import fr.ferret.FerretTest;
+import fr.ferret.controller.BrowseFileButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VariantPanel extends JPanel
 {
-    private final JComboBox<String> chromosomeList;
-    private final JTextField inputStart;
-    private final JTextField inputEnd;
+    //private final JComboBox<String> chromosomeList;
+    private final JTextField inputField;
+    private final BrowseFileButtonListener fileSelector;
 
     public VariantPanel() {
-        GridBagLayout gestionnaire = new GridBagLayout();
-        // applique le gestionnaire de placement au panneau
-        this.setLayout(gestionnaire);
+        //Labels
+        JLabel titleLabel = new JLabel(FerretTest.locale.getString("variant.input"), SwingConstants.LEFT);
+        titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel titleLabel = new JLabel(FerretTest.locale.getString("locus.input"));
-        JLabel lab_chromosome = new JLabel(FerretTest.locale.getString("locus.chromosome"));
+        JLabel helpLabel1 = new JLabel("<html> Aide : Exemple : ''CCR5'' comme nom de gène ou ''1234'' comme ID de gène" + "<br>" +
+                "Exemple pour plusieurs gènes à la fois : ''CCR5, HCP5'' si on entre des noms ou ''1234,  10866'' si on entre des ID", SwingConstants.CENTER);
 
-        String[] chromosomes = {" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-                "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"};
+        //Input panel
 
-        //Create the combo box, select item at index 4.
-        //Indices start at 0, so 4 specifies the pig.
-        chromosomeList = new JComboBox<>(chromosomes);
-        //dayList.setEditable(true);
-        chromosomeList.setSelectedIndex(0);
-        /*chromosomeList.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                JComboBox dayList = (JComboBox) event.getSource();
-            }
-        });*/
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridBagLayout());
 
-        JLabel lab_start = new JLabel(FerretTest.locale.getString("locus.start"));
-        JLabel lab_end = new JLabel(FerretTest.locale.getString("locus.end"));
+        //JLabel lab_inputnameorid = new JLabel(FerretTest.locale.getString("gene.inputnameorid"));
+        JLabel labOr = new JLabel(FerretTest.locale.getString("gene.or"));
+        labOr.setBorder(BorderFactory.createEmptyBorder(0, 130, 0, 10));
+        labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
-        inputStart = new JTextField();
-        inputEnd = new JTextField();
+        inputField = new JTextField();
 
-        JLabel lab_help_title = new JLabel(FerretTest.locale.getString("locus.help"));
+        JLabel selectedFile = new JLabel("Select a file");
+        JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
+        browseButton.setPreferredSize(new Dimension(200, 30));
+        browseButton.setBackground(new Color(201, 157, 240));
+        fileSelector = new BrowseFileButtonListener(this, browseButton, selectedFile);
+        //RunButtonListener listener = new RunButtonListener(frame, browseButton);
 
-        //Font f = lab_help_title.getFont();
-        //lab_help_title.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
-
-        //TODO IMPROVE HELP
-        JLabel lab_help = new JLabel("Entrer les coordonnées hg19 en bp de la version du génome humain.");
-        JLabel helpLabel = new JLabel("Exemple pour CCR5: Chromosome: 3 Début: 46411633 Fin: 46417697");
+        String texte = "Inclure le(s) variant(s) dans un voisinage de";
+        JCheckBox checkbox = new JCheckBox(texte);
 
         GridBagConstraints c = new GridBagConstraints();
-        // natural height, maximum width
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 0;
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 14));
-        this.add(titleLabel, c);
 
-        // natural height, maximum width
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
+        c.weightx = 0.8;
         c.gridx = 1;
+        c.gridy = 1;
+        inputPanel.add(inputField, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.3;
+        c.gridx = 2;
+        c.gridy = 1;
+        inputPanel.add(labOr, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.3;
+        c.gridx = 3;
+        c.gridy = 1;
+        inputPanel.add(browseButton, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.3;
+        c.gridx = 3;
         c.gridy = 2;
-        this.add(lab_chromosome, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 2;
-        this.add(chromosomeList, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 3;
-        this.add(lab_start, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 3;
-        this.add(inputStart, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 4;
-        this.add(lab_end, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 4;
-        this.add(inputEnd, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 5;
-        this.add(lab_help_title, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 6;
-        //this.add(lab_help, c);
+        selectedFile.setFont(new Font(selectedFile.getFont().getFontName(), Font.PLAIN, 13));
+        inputPanel.add(selectedFile, c);
 
         /*c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.3;
+        c.gridx = 1;
+        c.gridy = 2;
+        lab_inputnameorid.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 10));
+        lab_inputnameorid.setFont(new Font(lab_inputnameorid.getFont().getFontName(), Font.PLAIN, 16));
+        inputPanel.add(lab_inputnameorid, c);*/
+
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 7;*/
-        this.add(helpLabel, c);
+        c.gridx = 1;
+        c.gridy = 2;
+        inputPanel.add(checkbox,c);
+        //rdoName.addItemListener( this::radioButtons_itemStateChanged );
 
+        //rdoGreen.addItemListener( this::radioButtons_itemStateChanged );
 
+        //Add elements
+
+        this.setLayout(new BorderLayout());
+        add(titleLabel, BorderLayout.NORTH);
+        add(inputPanel, BorderLayout.CENTER);
+        add(helpLabel1, BorderLayout.SOUTH);
 
         //Borders
         setBorder(BorderFactory.createLineBorder(new Color(131, 55, 192, 140), 4));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
-        //TODO faut faire un inputPanel comme les autres onglets
-        // inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
-        helpLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+        helpLabel1.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
-    public JComboBox<String> getChromosomeList() {
-        return chromosomeList;
+    public JTextField getInputField() {
+        return inputField;
     }
 
-    public JTextField getInputStart() {
-        return inputStart;
-    }
-
-    public JTextField getInputEnd() {
-        return inputEnd;
+    public BrowseFileButtonListener getFileSelector() {
+        return fileSelector;
     }
 }
