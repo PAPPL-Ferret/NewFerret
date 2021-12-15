@@ -50,7 +50,9 @@ public class RunButtonListener implements ActionListener {
             case 1:
                 controller = new GenePanelController(frame, frame.getGenePanel());
                 break;
-                //TODO VARIANT
+            case 2:
+                controller = new VariantPanelController(frame, frame.getVariantPanel());
+                break;
         }
         controller.validateInfosAndRun(fileNameAndPath);
     }
