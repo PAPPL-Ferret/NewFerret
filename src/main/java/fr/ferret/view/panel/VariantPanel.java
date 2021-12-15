@@ -11,6 +11,7 @@ public class VariantPanel extends JPanel
     //private final JComboBox<String> chromosomeList;
     private final JTextField inputField;
     private final JCheckBox checkbox;
+    private final JTextField inputField2;
     private final BrowseFileButtonListener fileSelector;
 
     public VariantPanel() {
