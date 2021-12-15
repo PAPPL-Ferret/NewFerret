@@ -10,6 +10,7 @@ public class VariantPanel extends JPanel
 {
     //private final JComboBox<String> chromosomeList;
     private final JTextField inputField;
+    private final JTextField inputField2;
     private final BrowseFileButtonListener fileSelector;
 
     public VariantPanel() {
@@ -18,8 +19,8 @@ public class VariantPanel extends JPanel
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel helpLabel1 = new JLabel("<html> Aide : Exemple : ''CCR5'' comme nom de gène ou ''1234'' comme ID de gène" + "<br>" +
-                "Exemple pour plusieurs gènes à la fois : ''CCR5, HCP5'' si on entre des noms ou ''1234,  10866'' si on entre des ID", SwingConstants.CENTER);
+        JLabel helpLabel1 = new JLabel("<html> Aide : Exemple : ''73885319'' pour ''rs73885319''" + "<br>" +
+                "Exemple pour plusieurs variants à la fois : ''73885319, 2395029'' pour les varants ''rs73885319'' et ''rs2395029''", SwingConstants.CENTER);
 
         //Input panel
 
@@ -32,6 +33,7 @@ public class VariantPanel extends JPanel
         labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
         inputField = new JTextField();
+        inputField2 = new JTextField();
 
         JLabel selectedFile = new JLabel("Select a file");
         JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
@@ -42,6 +44,8 @@ public class VariantPanel extends JPanel
 
         String texte = "Inclure le(s) variant(s) dans un voisinage de";
         JCheckBox checkbox = new JCheckBox(texte);
+
+        JLabel bp = new JLabel(FerretTest.locale.getString("variant.bp"));
 
         GridBagConstraints c = new GridBagConstraints();
 
@@ -64,8 +68,8 @@ public class VariantPanel extends JPanel
         inputPanel.add(browseButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.3;
-        c.gridx = 3;
+        c.weightx = 0.35;
+        c.gridx = 4;
         c.gridy = 2;
         selectedFile.setFont(new Font(selectedFile.getFont().getFontName(), Font.PLAIN, 13));
         inputPanel.add(selectedFile, c);
@@ -79,11 +83,23 @@ public class VariantPanel extends JPanel
         inputPanel.add(lab_inputnameorid, c);*/
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
+        c.weightx = 0.35;
         c.gridx = 1;
         c.gridy = 2;
         inputPanel.add(checkbox,c);
         //rdoName.addItemListener( this::radioButtons_itemStateChanged );
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.05;
+        c.gridx = 2;
+        c.gridy = 2;
+        inputPanel.add(inputField2, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.05;
+        c.gridx = 3;
+        c.gridy = 2;
+        inputPanel.add(bp, c);
 
         //rdoGreen.addItemListener( this::radioButtons_itemStateChanged );
 
