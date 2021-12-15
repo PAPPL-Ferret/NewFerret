@@ -15,6 +15,7 @@ public class BrowseFileButtonListener implements ActionListener {
      * todo
      */
     private final JPanel panel;
+    private final JButton runButton;
     private final JLabel selectedFileLabel;
 
     private File selectedFile;
@@ -26,6 +27,7 @@ public class BrowseFileButtonListener implements ActionListener {
      */
     public BrowseFileButtonListener(JPanel panel, JButton runButton, JLabel selectedFileLabel) {
         this.panel = panel;
+        this.runButton = runButton;
         this.selectedFileLabel = selectedFileLabel;
         runButton.addActionListener(this);
     }
@@ -55,5 +57,9 @@ public class BrowseFileButtonListener implements ActionListener {
 
     public JLabel getSelectedFileLabel() {
         return selectedFileLabel;
+    }
+
+    public JButton getRunButton() {
+        return runButton;
     }
 }

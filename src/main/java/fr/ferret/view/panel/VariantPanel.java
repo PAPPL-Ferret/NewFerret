@@ -10,7 +10,7 @@ public class VariantPanel extends JPanel
 {
     //private final JComboBox<String> chromosomeList;
     private final JTextField inputField;
-    private final JTextField inputField2;
+    private final JCheckBox checkbox;
     private final BrowseFileButtonListener fileSelector;
 
     public VariantPanel() {
@@ -43,7 +43,7 @@ public class VariantPanel extends JPanel
         //RunButtonListener listener = new RunButtonListener(frame, browseButton);
 
         String texte = "Inclure le(s) variant(s) dans un voisinage de";
-        JCheckBox checkbox = new JCheckBox(texte);
+        checkbox = new JCheckBox(texte);
 
         JLabel bp = new JLabel(FerretTest.locale.getString("variant.bp"));
 
@@ -123,5 +123,9 @@ public class VariantPanel extends JPanel
 
     public BrowseFileButtonListener getFileSelector() {
         return fileSelector;
+    }
+
+    public JCheckBox getCheckbox() {
+        return checkbox;
     }
 }
