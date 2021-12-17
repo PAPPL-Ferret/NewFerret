@@ -9,9 +9,9 @@ import java.awt.*;
 public class VariantPanel extends JPanel
 {
     //private final JComboBox<String> chromosomeList;
-    private final JTextField inputField;
+    private final JTextField geneIdField;
     private final JCheckBox checkbox;
-    private final JTextField inputField2;
+    private final JTextField bpField;
     private final BrowseFileButtonListener fileSelector;
 
     public VariantPanel() {
@@ -33,18 +33,17 @@ public class VariantPanel extends JPanel
         labOr.setBorder(BorderFactory.createEmptyBorder(0, 130, 0, 10));
         labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
-        inputField = new JTextField();
-        inputField2 = new JTextField();
+        geneIdField = new JTextField();
+        bpField = new JTextField();
 
-        JLabel selectedFile = new JLabel("Select a file");
+        JLabel selectedFile = new JLabel(FerretTest.locale.getString("gene.selectfile"));
         JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
         browseButton.setPreferredSize(new Dimension(200, 30));
         browseButton.setBackground(new Color(201, 157, 240));
         fileSelector = new BrowseFileButtonListener(this, browseButton, selectedFile);
         //RunButtonListener listener = new RunButtonListener(frame, browseButton);
 
-        String texte = "Inclure le(s) variant(s) dans un voisinage de";
-        checkbox = new JCheckBox(texte);
+        checkbox = new JCheckBox(FerretTest.locale.getString("variant.bpcheckbox"));
 
         JLabel bp = new JLabel(FerretTest.locale.getString("variant.bp"));
 
@@ -54,7 +53,7 @@ public class VariantPanel extends JPanel
         c.weightx = 0.8;
         c.gridx = 1;
         c.gridy = 1;
-        inputPanel.add(inputField, c);
+        inputPanel.add(geneIdField, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.3;
@@ -94,7 +93,7 @@ public class VariantPanel extends JPanel
         c.weightx = 0.05;
         c.gridx = 2;
         c.gridy = 2;
-        inputPanel.add(inputField2, c);
+        inputPanel.add(bpField, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.05;
@@ -118,8 +117,8 @@ public class VariantPanel extends JPanel
         helpLabel1.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
-    public JTextField getInputField() {
-        return inputField;
+    public JTextField getGeneIdField() {
+        return geneIdField;
     }
 
     public BrowseFileButtonListener getFileSelector() {
@@ -128,5 +127,9 @@ public class VariantPanel extends JPanel
 
     public JCheckBox getCheckbox() {
         return checkbox;
+    }
+
+    public JTextField getBpField() {
+        return bpField;
     }
 }

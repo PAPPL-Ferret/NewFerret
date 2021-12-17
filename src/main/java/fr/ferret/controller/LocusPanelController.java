@@ -47,7 +47,6 @@ public class LocusPanelController implements IInputController
         String chrSelected = (String) locusPanel.getChromosomeList().getSelectedItem();
         boolean isChrSelected = !chrSelected.equals(" ");
 
-        //TODO DEPENDS ON THE SELECTED PANEL
         String startPosition = locusPanel.getInputStart().getText();
         String endPosition = locusPanel.getInputEnd().getText();
 

@@ -5,22 +5,16 @@ import fr.ferret.controller.UpdateChecker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class UpdateFrame extends JFrame
 {
-    //TODO CLEAN
-    final Boolean[] checkedForUpdate = {false};
-    JPanel updatePanel = new JPanel();
-    JPanel updateBarHolder = new JPanel();
-    JPanel updateButtonHolder = new JPanel();
-    JProgressBar updateProgressBar = new JProgressBar();
-    JLabel updateLabel = new JLabel(FerretTest.locale.getString("update.checking"));
-    JLabel updateDetailLabel = new JLabel("");
-    JButton updateOK = new JButton(FerretTest.locale.getString("settings.ok"));
+    private final Boolean[] checkedForUpdate = {false};
+    private final JPanel updatePanel = new JPanel();
+    private final JPanel updateBarHolder = new JPanel();
+    private final JProgressBar updateProgressBar = new JProgressBar();
+    private final JLabel updateLabel = new JLabel(FerretTest.locale.getString("update.checking"));
 
     public UpdateFrame() {
         super(FerretTest.locale.getString("update.title"));
@@ -36,11 +30,14 @@ public class UpdateFrame extends JFrame
         updateLabel.setAlignmentX(CENTER_ALIGNMENT);
         updateProgressBar.setIndeterminate(true);
         //updateBarHolder.add(updateDetailLabel);
+        JLabel updateDetailLabel = new JLabel("");
         updateDetailLabel.setAlignmentX(CENTER_ALIGNMENT);
         updateBarHolder.add(updateProgressBar);
         updatePanel.add(updateBarHolder);
+        JPanel updateButtonHolder = new JPanel();
         updatePanel.add(updateButtonHolder);
         updateButtonHolder.setLayout(new BoxLayout(updateButtonHolder, BoxLayout.X_AXIS));
+        JButton updateOK = new JButton(FerretTest.locale.getString("settings.ok"));
         updateButtonHolder.add(updateOK);
         updateOK.addActionListener(e -> UpdateFrame.this.dispose());
         this.pack();

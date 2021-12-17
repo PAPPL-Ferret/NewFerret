@@ -63,7 +63,7 @@ public class SettingsFrame extends JFrame {
 
         //MAF
         //TODO IMPROVE CODE
-        //TODO SI LE TEMPS : une barre pour le min, une barre pour le max
+        //TODO PGROU : une barre pour le min, une barre pour le max
 
         JSlider mafSlider = new JSlider(0, 5000, 0);
         JLabel MAFThresholdLabel = new JLabel(FerretTest.locale.getString("settings.mafthresold"));
@@ -73,7 +73,7 @@ public class SettingsFrame extends JFrame {
         JPanel mafESPPanel = new JPanel();
 
         //JCheckBox ESPMAF = new JCheckBox("Apply MAF threshold to the Exome Sequencing Project");
-        //TODO AJOUTER GnomAD si le temps
+        //TODO bonus : GnomAD si le temps
 
         NumberFormat mafFormat = NumberFormat.getNumberInstance();
         mafFormat.setMaximumFractionDigits(4);

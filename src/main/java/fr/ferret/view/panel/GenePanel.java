@@ -38,7 +38,7 @@ public class GenePanel extends JPanel {
 
         inputField = new JTextField();
 
-        JLabel selectedFile = new JLabel("Select a file");
+        JLabel selectedFile = new JLabel(FerretTest.locale.getString("gene.selectfile"));
         JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
         browseButton.setPreferredSize(new Dimension(200, 30));
         browseButton.setBackground(new Color(201, 157, 240));

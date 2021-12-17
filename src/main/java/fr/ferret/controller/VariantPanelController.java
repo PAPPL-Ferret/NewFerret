@@ -7,14 +7,9 @@ import fr.ferret.view.panel.VariantPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class VariantPanelController implements IInputController
@@ -30,11 +25,12 @@ public class VariantPanelController implements IInputController
     public void validateInfosAndRun(String fileNameAndPath) {
         //Reset borders
         frame.getRegionPanel().setBorder(null);
-        variantPanel.getInputField().setBorder(null);
+        variantPanel.getGeneIdField().setBorder(null);
         variantPanel.getFileSelector().getRunButton().setBorder(null);
+        variantPanel.getBpField().setBorder(null);
 
         //Traitement
-        JTextField geneNameField = variantPanel.getInputField();
+        JTextField geneNameField = variantPanel.getGeneIdField();
         JCheckBox snpESPCheckBox = variantPanel.getCheckbox();
 
 
@@ -61,7 +57,7 @@ public class VariantPanelController implements IInputController
         boolean invalidCharacter = false;
         String invalidRegex = ".*\\D.*"; // This is everything except numbers
         ArrayList<String> snpListArray = new ArrayList<String>();
-        String snpWindowSize = "";//FIXME snpWindowField.getText();
+        String snpWindowSize = variantPanel.getBpField().getText();
         boolean snpWindowSelected = snpESPCheckBox.isSelected();
         boolean validWindowSizeEntered = true; // must be both not empty and an int
 
@@ -286,7 +282,7 @@ public class VariantPanelController implements IInputController
             StringBuffer errorMessage = new StringBuffer("Correct the following errors:");
             if(!snpListInputted && !snpFileImported){
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectvari"));
-                variantPanel.getInputField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                variantPanel.getGeneIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 variantPanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if(snpFileImported && snpFileError){
@@ -300,7 +296,7 @@ public class VariantPanelController implements IInputController
             if((snpListInputted || snpFileImported) && invalidCharacter){
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectvari.cerr"));
                 if (snpListInputted) {
-                    variantPanel.getInputField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                    variantPanel.getGeneIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 } else {
                     variantPanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 }
@@ -311,7 +307,7 @@ public class VariantPanelController implements IInputController
             }
             if(!validWindowSizeEntered){
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectvari.wsize"));
-                //TODO locusPanel.getInputEnd().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                variantPanel.getBpField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             JOptionPane.showMessageDialog(frame, errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
         }

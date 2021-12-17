@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 /**
- * An update checker for Ferret
+ * An update checker for Ferret <br>
+ * Not tested
  *
  * TODO UPDATE THE LINKS....
  */
@@ -30,7 +31,7 @@ public class UpdateChecker extends SwingWorker<Boolean, Object> {
     @Override
     protected Boolean doInBackground() throws Exception {
         try {
-            //TODO
+            //TODO Update links and tests
             URL urlLocation = new URL("https://webspace.princeton.edu/users/taverner/updateFerret.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(urlLocation.openStream()));
             String currentString;

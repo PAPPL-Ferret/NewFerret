@@ -12,18 +12,26 @@ import java.io.File;
  */
 public class BrowseFileButtonListener implements ActionListener {
     /**
-     * todo
+     * The panel containing the button
      */
     private final JPanel panel;
+    /**
+     * The listened button
+     */
     private final JButton runButton;
+    /**
+     * The status label
+     */
     private final JLabel selectedFileLabel;
-
+    /**
+     * The file selected by the user
+     */
     private File selectedFile;
 
     /**
      * @param panel The panel owning the button
      * @param runButton The button to listen
-     * @param selectedFileLabel
+     * @param selectedFileLabel The status label
      */
     public BrowseFileButtonListener(JPanel panel, JButton runButton, JLabel selectedFileLabel) {
         this.panel = panel;
