@@ -9,7 +9,7 @@ import java.awt.*;
 public class VariantPanel extends JPanel
 {
     //private final JComboBox<String> chromosomeList;
-    private final JTextField geneIdField;
+    private final JTextField variantIdField;
     private final JCheckBox checkbox;
     private final JTextField bpField;
     private final BrowseFileButtonListener fileSelector;
@@ -29,15 +29,15 @@ public class VariantPanel extends JPanel
         inputPanel.setLayout(new GridBagLayout());
 
         //JLabel lab_inputnameorid = new JLabel(FerretTest.locale.getString("gene.inputnameorid"));
-        JLabel labOr = new JLabel(FerretTest.locale.getString("gene.or"));
+        JLabel labOr = new JLabel(FerretTest.locale.getString("variant.or"));
         labOr.setBorder(BorderFactory.createEmptyBorder(0, 130, 0, 10));
         labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
-        geneIdField = new JTextField();
+        variantIdField = new JTextField();
         bpField = new JTextField();
 
-        JLabel selectedFile = new JLabel(FerretTest.locale.getString("gene.selectfile"));
-        JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
+        JLabel selectedFile = new JLabel(FerretTest.locale.getString("variant.selectfile"));
+        JButton browseButton = new JButton(FerretTest.locale.getString("variant.browse"));
         browseButton.setPreferredSize(new Dimension(200, 30));
         browseButton.setBackground(new Color(201, 157, 240));
         fileSelector = new BrowseFileButtonListener(this, browseButton, selectedFile);
@@ -50,10 +50,10 @@ public class VariantPanel extends JPanel
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.8;
+        c.weightx = 0.7;
         c.gridx = 1;
         c.gridy = 1;
-        inputPanel.add(geneIdField, c);
+        inputPanel.add(variantIdField, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.3;
@@ -69,7 +69,7 @@ public class VariantPanel extends JPanel
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.35;
-        c.gridx = 4;
+        c.gridx = 3;
         c.gridy = 2;
         selectedFile.setFont(new Font(selectedFile.getFont().getFontName(), Font.PLAIN, 13));
         inputPanel.add(selectedFile, c);
@@ -82,24 +82,34 @@ public class VariantPanel extends JPanel
         lab_inputnameorid.setFont(new Font(lab_inputnameorid.getFont().getFontName(), Font.PLAIN, 16));
         inputPanel.add(lab_inputnameorid, c);*/
 
+        JPanel choice = new JPanel();
+        choice.setLayout(new GridBagLayout());
+
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.35;
+        c.weightx = 0.02;
+        c.gridx = 1;
+        c.gridy = 1;
+        checkbox.setFont(new Font(checkbox.getFont().getFontName(), Font.PLAIN, 13));
+        choice.add(checkbox, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.4;
+        c.gridx = 2;
+        c.gridy = 1;
+        choice.add(bpField, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.3;
+        c.gridx = 3;
+        c.gridy = 1;
+        bp.setFont(new Font(bp.getFont().getFontName(), Font.PLAIN, 13));
+        choice.add(bp, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.7;
         c.gridx = 1;
         c.gridy = 2;
-        inputPanel.add(checkbox,c);
-        //rdoName.addItemListener( this::radioButtons_itemStateChanged );
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.05;
-        c.gridx = 2;
-        c.gridy = 2;
-        inputPanel.add(bpField, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.05;
-        c.gridx = 3;
-        c.gridy = 2;
-        inputPanel.add(bp, c);
+        inputPanel.add(choice, c);
 
         //rdoGreen.addItemListener( this::radioButtons_itemStateChanged );
 
@@ -117,8 +127,8 @@ public class VariantPanel extends JPanel
         helpLabel1.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
-    public JTextField getGeneIdField() {
-        return geneIdField;
+    public JTextField getVariantIdField() {
+        return variantIdField;
     }
 
     public BrowseFileButtonListener getFileSelector() {

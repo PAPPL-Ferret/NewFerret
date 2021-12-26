@@ -25,12 +25,12 @@ public class VariantPanelController implements IInputController
     public void validateInfosAndRun(String fileNameAndPath) {
         //Reset borders
         frame.getRegionPanel().setBorder(null);
-        variantPanel.getGeneIdField().setBorder(null);
+        variantPanel.getVariantIdField().setBorder(null);
         variantPanel.getFileSelector().getRunButton().setBorder(null);
         variantPanel.getBpField().setBorder(null);
 
         //Traitement
-        JTextField geneNameField = variantPanel.getGeneIdField();
+        JTextField geneNameField = variantPanel.getVariantIdField();
         JCheckBox snpESPCheckBox = variantPanel.getCheckbox();
 
 
@@ -282,7 +282,7 @@ public class VariantPanelController implements IInputController
             StringBuffer errorMessage = new StringBuffer("Correct the following errors:");
             if(!snpListInputted && !snpFileImported){
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectvari"));
-                variantPanel.getGeneIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                variantPanel.getVariantIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 variantPanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if(snpFileImported && snpFileError){
@@ -296,7 +296,7 @@ public class VariantPanelController implements IInputController
             if((snpListInputted || snpFileImported) && invalidCharacter){
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectvari.cerr"));
                 if (snpListInputted) {
-                    variantPanel.getGeneIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                    variantPanel.getVariantIdField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 } else {
                     variantPanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 }
