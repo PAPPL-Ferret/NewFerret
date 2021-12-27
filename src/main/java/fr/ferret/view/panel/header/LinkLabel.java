@@ -6,6 +6,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * A clickable JTextField containing a link
@@ -23,9 +24,17 @@ public class LinkLabel extends JTextField implements MouseListener, FocusListene
     private Border hoverBorder;
     private Border standardBorder;
 
-    public LinkLabel(URI target, String text) {
+    public LinkLabel(String url) {
+        this(url, url);
+    }
+
+    public LinkLabel(String url, String text) {
         super(text);
-        this.target = target;
+        try {
+            this.target = new URI(url);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setBackgroundColor(Color bgColor) {
@@ -36,7 +45,10 @@ public class LinkLabel extends JTextField implements MouseListener, FocusListene
         this.addMouseListener(this);
         this.addFocusListener(this);
         this.addActionListener(this);
-        setToolTipText(target.toString());
+        if(target != null)
+            setToolTipText(target.toString());
+        else
+            setToolTipText("Invalid link");
 
         activeBorder = new MatteBorder(0, 0, 1, 0, activeColor);
         hoverBorder = new MatteBorder(0, 0, 1, 0, hoverColor);

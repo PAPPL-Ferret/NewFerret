@@ -7,11 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Locus panel <br>
+ * The gene panel of Ferret <br>
  * Selection of the genes parameters
  */
 public class GenePanel extends JPanel {
-    //private final JComboBox<String> chromosomeList;
     private final JTextField inputField;
     private final BrowseFileButtonListener fileSelector;
     private final JRadioButton rdoName;

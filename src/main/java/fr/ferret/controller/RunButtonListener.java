@@ -42,7 +42,7 @@ public class RunButtonListener implements ActionListener {
     }
 
     private void validateInfosAndRun(String fileNameAndPath) {
-        IInputController controller = null;
+        InputPanelController controller = null;
         switch (getFrame().getInputTabs().getSelectedIndex()) {
             case 0:
                 controller = new LocusPanelController(frame, frame.getLocusPanel());

@@ -6,6 +6,10 @@ import fr.ferret.controller.BrowseFileButtonListener;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The variant panel of Ferret <br>
+ * Selection of the gene variants parameters
+ */
 public class VariantPanel extends JPanel
 {
     //private final JComboBox<String> chromosomeList;

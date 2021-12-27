@@ -3,7 +3,6 @@ package fr.ferret.controller;
 import fr.ferret.FerretTest;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.GenePanel;
-import fr.ferret.view.panel.RegionPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,21 +10,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 
-public class GenePanelController implements IInputController {
-    private final FerretFrame frame;
+/**
+ * The {@link GenePanel} controller
+ */
+public class GenePanelController extends InputPanelController {
     private final GenePanel genePanel;
 
     public GenePanelController(FerretFrame frame, GenePanel genePanel) {
-        this.frame = frame;
+        super(frame);
         this.genePanel = genePanel;
     }
 
     public void validateInfosAndRun(String fileNameAndPath) {
         //Reset borders
-        frame.getRegionPanel().setBorder(null);
         genePanel.getInputField().setBorder(null);
         genePanel.getFileSelector().getRunButton().setBorder(null);
 
@@ -35,16 +36,7 @@ public class GenePanelController implements IInputController {
         JRadioButton geneNCBIRadioButton = genePanel.getRdoID();
 
         //Selected populations for the model
-        ArrayList<CharSequence> populations = new ArrayList<>();
-        RegionPanel panel = frame.getRegionPanel();
-        for (RegionPanel.ZonesPanel regionPanel : panel.getRegions()) {
-            for (int i = 0; i < regionPanel.getCheckBoxes().length; i++) {
-                if (regionPanel.getCheckBoxes()[i].isSelected()) {
-                    //Add the selected region to the populations list
-                    populations.add(regionPanel.getRegion().getZones()[i]);
-                }
-            }
-        }
+        List<CharSequence> populations = getSelectedPopulations();
         boolean popSelected = !populations.isEmpty();
 
         String geneString = geneNameField.getText();
@@ -130,7 +122,7 @@ public class GenePanelController implements IInputController {
         if ((geneListInputted || (geneFileImported && !geneFileError && !geneFileExtensionError)) && !invalidCharacter && popSelected) {
 
             FerretTest.log.log(Level.INFO, "Starting gene research...");
-            //TODO VOIR TEMP RUN
+            //TODO LINK WITH MODEL
 
             // this should be combined with the one single call to Ferret later
             /*final Integer[] variants = {0};
@@ -296,9 +288,9 @@ public class GenePanelController implements IInputController {
             }
             if (!popSelected) {
                 errorMessage.append("\n ").append(FerretTest.locale.getString("run.selectpop"));
-                frame.getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                getFrame().getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
-            JOptionPane.showMessageDialog(frame, errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
         }
     }
 }

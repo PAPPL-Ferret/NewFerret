@@ -15,12 +15,7 @@ public class AboutFrame extends JFrame {
         JLabel ferretDateLabel = new JLabel(FerretTest.locale.getString("about.date"));
         JTextArea ferretCitation = new JTextArea(FerretTest.locale.getString("about.citation"), 4, 50);
 
-        LinkLabel ferretWebLabelAbout = null;
-        try{ //FIXME MAIS WAW
-            ferretWebLabelAbout = new LinkLabel(new URI("http://limousophie35.github.io/Ferret/"),"http://limousophie35.github.io/Ferret/");
-        }catch (URISyntaxException e){
-            e.printStackTrace();
-        }
+        LinkLabel ferretWebLabelAbout = new LinkLabel(FerretTest.locale.getString("about.link"));
 
         this.getContentPane().add(aboutPanel);
         this.setResizable(true);

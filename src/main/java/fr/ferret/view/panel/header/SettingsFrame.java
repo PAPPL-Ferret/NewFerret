@@ -56,7 +56,7 @@ public class SettingsFrame extends JFrame {
         }
 
         //MAF
-        //TODO IMPROVE CODE
+        //Code améliorable
         //TODO PGROU : une barre pour le min, une barre pour le max
 
         JSlider mafSlider = new JSlider(0, 5000, 0);

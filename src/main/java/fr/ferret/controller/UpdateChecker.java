@@ -9,8 +9,6 @@ import java.net.URL;
 /**
  * An update checker for Ferret <br>
  * Not tested
- *
- * TODO UPDATE THE LINKS....
  */
 public class UpdateChecker extends SwingWorker<Boolean, Object> {
     Boolean needUpdate = null, urgentUpdate = null;

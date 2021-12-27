@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Locus panel <br>
- * Selection of the genes parameters
+ * The locus panel of Ferret <br>
+ * Selection of the chromosome and genes parameters
  */
 public class LocusPanel extends JPanel {
     private final JComboBox<String> chromosomeList;

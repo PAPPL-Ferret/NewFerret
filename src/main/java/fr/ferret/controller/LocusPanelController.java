@@ -4,45 +4,34 @@ import fr.ferret.FerretTest;
 import fr.ferret.controller.settings.HumanGenomeVersions;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.LocusPanel;
-import fr.ferret.view.panel.RegionPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-public class LocusPanelController implements IInputController
+/**
+ * The {@link LocusPanel} controller
+ */
+public class LocusPanelController extends InputPanelController
 {
-    private final FerretFrame frame;
     private final LocusPanel locusPanel;
 
     public LocusPanelController(FerretFrame frame, LocusPanel locusPanel) {
-        this.frame = frame;
+        super(frame);
         this.locusPanel = locusPanel;
     }
     
     public void validateInfosAndRun(String fileNameAndPath) {
         //Reset borders
-        frame.getRegionPanel().setBorder(null);
         locusPanel.getChromosomeList().setBorder(null);
         locusPanel.getInputStart().setBorder(null);
         locusPanel.getInputEnd().setBorder(null);
 
         //Selected populations for the model
-        //TODO THIS IS COMMON WITH THE OTHER CONTROLLERS
-        ArrayList<CharSequence> populations = new ArrayList<>();
-        RegionPanel panel = frame.getRegionPanel();
-        for (RegionPanel.ZonesPanel regionPanel : panel.getRegions()) {
-            for (int i = 0; i < regionPanel.getCheckBoxes().length; i++) {
-                if (regionPanel.getCheckBoxes()[i].isSelected()) {
-                    //Add the selected region to the populations list
-                    populations.add(regionPanel.getRegion().getZones()[i]);
-                }
-            }
-        }
-
+        List<CharSequence> populations = getSelectedPopulations();
         boolean populationSelected = !populations.isEmpty();
 
         // Chr position input method
@@ -172,7 +161,7 @@ public class LocusPanelController implements IInputController
                 webAddress = "http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_positions/ALL.chr$.phase3_shapeit2_mvncall_integrated_v3plus_nounphased.rsID.genotypes.GRCh38_dbSNP_no_SVs.vcf.gz";
             }
 
-            //FIXME This is the new ferret URL from Sophie
+            //This is the new ferret URL from Sophie
             //webAddress = "http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/?fbclid=IwAR0kMq3tB0cjZ5L49gfR4_uXSUgM6RK5VTeaM9O_EVXxQ0856Cnc7kmIBL8";
             webAddress = "http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr$.phase3_shapeit2_mvncall_integrated_v5b.20130502.genotypes.vcf.gz";
 
@@ -286,7 +275,7 @@ public class LocusPanelController implements IInputController
             }
             if (!populationSelected) {
                 errorMessage.append("\n " + FerretTest.locale.getString("run.selectpop"));
-                frame.getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                getFrame().getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!startSelected) {
                 errorMessage.append("\n " + FerretTest.locale.getString("run.startpos"));
@@ -306,7 +295,7 @@ public class LocusPanelController implements IInputController
                 locusPanel.getInputStart().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 locusPanel.getInputEnd().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
-            JOptionPane.showMessageDialog(frame, errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
         }
     }
 }

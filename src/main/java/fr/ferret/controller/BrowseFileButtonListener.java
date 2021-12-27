@@ -50,7 +50,7 @@ public class BrowseFileButtonListener implements ActionListener {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = saveFileChooser.getSelectedFile();
             fileNameAndPath = file.getAbsolutePath();
-            selectedFileLabel.setText("Selected file: " + fileNameAndPath); //TODO TRANSLATE
+            selectedFileLabel.setText(FerretTest.locale.getString("browse.selectedfile") + " " + fileNameAndPath);
             selectedFile = file;
         }
     }

@@ -60,13 +60,8 @@ public class UpdateFrame extends JFrame
                         if (urgentUpdate || needUpdate) {
                             updateLabel.setText(updateReason);
                             updateBarHolder.remove(updateProgressBar);
-                            LinkLabel ferretUpdate = null;
-                            try {
-                                String link = FerretTest.locale.getString("update.link");
-                                ferretUpdate = new LinkLabel(new URI(link), link);
-                            } catch (URISyntaxException e) {
-                                e.printStackTrace();
-                            }
+                            String link = FerretTest.locale.getString("update.link");
+                            LinkLabel ferretUpdate = new LinkLabel(link);
                             JLabel updateFerretLabel = new JLabel(FerretTest.locale.getString("update.msg"));
                             updateBarHolder.add(updateFerretLabel);
                             updateBarHolder.repaint();
