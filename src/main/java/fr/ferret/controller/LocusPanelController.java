@@ -1,6 +1,7 @@
 package fr.ferret.controller;
 
 import fr.ferret.FerretTest;
+import fr.ferret.controller.settings.HumanGenomeVersions;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.LocusPanel;
 import fr.ferret.view.panel.RegionPanel;
@@ -30,9 +31,10 @@ public class LocusPanelController implements IInputController
         locusPanel.getInputEnd().setBorder(null);
 
         //Selected populations for the model
+        //TODO THIS IS COMMON WITH THE OTHER CONTROLLERS
         ArrayList<CharSequence> populations = new ArrayList<>();
         RegionPanel panel = frame.getRegionPanel();
-        for (RegionPanel.SubPanel regionPanel : panel.getRegions()) {
+        for (RegionPanel.ZonesPanel regionPanel : panel.getRegions()) {
             for (int i = 0; i < regionPanel.getCheckBoxes().length; i++) {
                 if (regionPanel.getCheckBoxes()[i].isSelected()) {
                     //Add the selected region to the populations list

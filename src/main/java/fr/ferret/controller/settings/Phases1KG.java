@@ -1,4 +1,4 @@
-package fr.ferret.controller;
+package fr.ferret.controller.settings;
 
 import fr.ferret.view.region.Region;
 

@@ -1,6 +1,6 @@
 package fr.ferret;
 
-import fr.ferret.controller.FerretConfig;
+import fr.ferret.controller.settings.FerretConfig;
 import fr.ferret.view.FerretFrame;
 
 import java.util.Locale;

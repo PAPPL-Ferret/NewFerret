@@ -1,7 +1,7 @@
 package fr.ferret.view.panel.header;
 
 import fr.ferret.FerretTest;
-import fr.ferret.controller.FerretConfig;
+import fr.ferret.controller.settings.FerretConfig;
 
 import javax.swing.*;
 import java.awt.*;

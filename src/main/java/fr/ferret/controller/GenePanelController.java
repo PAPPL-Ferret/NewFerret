@@ -37,7 +37,7 @@ public class GenePanelController implements IInputController {
         //Selected populations for the model
         ArrayList<CharSequence> populations = new ArrayList<>();
         RegionPanel panel = frame.getRegionPanel();
-        for (RegionPanel.SubPanel regionPanel : panel.getRegions()) {
+        for (RegionPanel.ZonesPanel regionPanel : panel.getRegions()) {
             for (int i = 0; i < regionPanel.getCheckBoxes().length; i++) {
                 if (regionPanel.getCheckBoxes()[i].isSelected()) {
                     //Add the selected region to the populations list

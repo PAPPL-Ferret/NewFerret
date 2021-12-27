@@ -1,4 +1,4 @@
-package fr.ferret.controller;
+package fr.ferret.controller.settings;
 
 /**
  * Paramètres du programme

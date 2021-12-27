@@ -1,19 +1,15 @@
 package fr.ferret.view.panel.header;
 
 import fr.ferret.FerretTest;
-import fr.ferret.controller.FerretConfig;
-import fr.ferret.controller.FileOutputType;
-import fr.ferret.controller.HumanGenomeVersions;
-import fr.ferret.controller.Phases1KG;
+import fr.ferret.controller.settings.FerretConfig;
+import fr.ferret.controller.settings.FileOutputType;
+import fr.ferret.controller.settings.HumanGenomeVersions;
+import fr.ferret.controller.settings.Phases1KG;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Hashtable;

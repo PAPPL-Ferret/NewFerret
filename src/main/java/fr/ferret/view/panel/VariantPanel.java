@@ -50,25 +50,25 @@ public class VariantPanel extends JPanel
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.7;
+        c.weightx = 0.8;
         c.gridx = 1;
         c.gridy = 1;
         inputPanel.add(variantIdField, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.3;
+        c.weightx = 0.2;
         c.gridx = 2;
         c.gridy = 1;
         inputPanel.add(labOr, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.3;
+        c.weightx = 0.6;
         c.gridx = 3;
         c.gridy = 1;
         inputPanel.add(browseButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.35;
+        c.weightx = 0.6;
         c.gridx = 3;
         c.gridy = 2;
         selectedFile.setFont(new Font(selectedFile.getFont().getFontName(), Font.PLAIN, 13));

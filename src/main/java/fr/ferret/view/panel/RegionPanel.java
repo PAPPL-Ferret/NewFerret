@@ -17,7 +17,7 @@ public class RegionPanel extends JPanel {
     /**
      * Panels for each supported {@link Region}
      */
-    private final List<SubPanel> regions = new ArrayList<>();
+    private final List<ZonesPanel> regions = new ArrayList<>();
 
     /**
      * Inits a new RegionPanel
@@ -37,7 +37,7 @@ public class RegionPanel extends JPanel {
         Region[] regions1 = FerretTest.config.getSelectedVersion().getRegions();
         for (int i = 0; i < regions1.length; i++) {
             Region region = regions1[i];
-            SubPanel panel = new SubPanel(region, i >= 3 ? 7 : 9);
+            ZonesPanel panel = new ZonesPanel(region, i >= 3 ? 7 : 9);
             regions.add(panel);
             container.add(panel);
         }
@@ -48,7 +48,7 @@ public class RegionPanel extends JPanel {
     /**
      * @return Panels for each supported {@link Region}
      */
-    public List<SubPanel> getRegions() {
+    public List<ZonesPanel> getRegions() {
         return regions;
     }
 
@@ -56,7 +56,7 @@ public class RegionPanel extends JPanel {
      * A JPanel containing a {@link Region} <br>
      * Contains all the selectable zones of the region
      */
-    public class SubPanel extends JPanel {
+    public class ZonesPanel extends JPanel {
         /**
          * The region displayed on this panel
          */
@@ -71,7 +71,7 @@ public class RegionPanel extends JPanel {
          * @param region The region
          * @param lines The number of lines of the layout, to keep coherence with other displayed SubPanels
          */
-        public SubPanel(Region region, int lines) {
+        public ZonesPanel(Region region, int lines) {
             this.region = region;
             this.setLayout(new GridLayout(lines, 1));
 
@@ -102,7 +102,7 @@ public class RegionPanel extends JPanel {
                 setCheckBoxesState(1, state);
 
                 if (region == FerretTest.config.getSelectedVersion().getRegions()[0]) {
-                    for (SubPanel panel : RegionPanel.this.regions) {
+                    for (ZonesPanel panel : RegionPanel.this.regions) {
                         if (panel != this) {
                             panel.setCheckBoxesState(0, state);
                         }
