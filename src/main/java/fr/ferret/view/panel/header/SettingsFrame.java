@@ -5,6 +5,7 @@ import fr.ferret.controller.settings.FerretConfig;
 import fr.ferret.controller.settings.HumanGenomeVersions;
 import fr.ferret.controller.settings.Phases1KG;
 import fr.ferret.controller.settings.SettingsFrameController;
+import fr.ferret.view.FerretFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +19,12 @@ import java.util.Hashtable;
 public class SettingsFrame extends JFrame {
     private final FerretConfig config;
 
-    public SettingsFrame(FerretConfig config) {
+    public SettingsFrame(FerretFrame ferretFrame, FerretConfig config) {
         super(FerretTest.locale.getString("settings.title"));
         this.config = config;
 
         URL questionMarkURL = getClass().getResource("/questionMark25.png");
         ImageIcon questionMark = new ImageIcon(questionMarkURL);
-        JLabel questionMarkLocusInput = new JLabel(questionMark); //TODO LINK WITH LOCUS PANEL
         JLabel questionMarkMAFThreshold = new JLabel(questionMark);
 
         JPanel settingsPanel = new JPanel();
@@ -52,7 +52,6 @@ public class SettingsFrame extends JFrame {
             }
             phaseButtons[config.getSelectedVersion().ordinal()].setSelected(true); //Default button
             phaseButtons[Phases1KG.NYGC_30X.ordinal()].setEnabled(false); //Disable NYGC : not implemented
-            //TODO INCOMPATIBILITIES WITH HUMAN VERSION BUTTONS
         }
 
         //MAF
@@ -169,7 +168,7 @@ public class SettingsFrame extends JFrame {
         settingsCancel.addActionListener(new SettingsFrameController.CancelButtonListener(this));
         settingsButtonPanel.add(settingsCancel);
 
-        settingsOK.addActionListener(new SettingsFrameController.SaveButtonListener(this, phaseButtons, humanVersionButtons, mafText, allFilesButton, freqFileButton, vcfFileButton));
+        settingsOK.addActionListener(new SettingsFrameController.SaveButtonListener(ferretFrame, this, phaseButtons, humanVersionButtons, mafText, allFilesButton, freqFileButton, vcfFileButton));
         settingsButtonPanel.add(settingsOK);
 
         this.pack();

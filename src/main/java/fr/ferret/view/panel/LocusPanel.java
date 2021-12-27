@@ -20,9 +20,7 @@ public class LocusPanel extends JPanel {
         JLabel titleLabel = new JLabel(FerretTest.locale.getString("locus.input"), SwingConstants.LEFT);
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
-
-        //TODO TRANSLATE HELP MESSAGES
-        JLabel helpLabel = new JLabel("Aide : Exemple pour CCR5: Chromosome: 3 Début: 46411633 Fin: 46417697", SwingConstants.CENTER);
+        JLabel helpLabel = new JLabel(FerretTest.locale.getString("locus.help"), SwingConstants.CENTER);
 
         //Input panel
 

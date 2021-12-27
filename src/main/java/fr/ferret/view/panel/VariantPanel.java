@@ -24,8 +24,7 @@ public class VariantPanel extends JPanel
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel helpLabel1 = new JLabel("<html> Aide : Exemple : ''73885319'' pour ''rs73885319''" + "<br>" +
-                "Exemple pour plusieurs variants à la fois : ''73885319, 2395029'' pour les varants ''rs73885319'' et ''rs2395029''", SwingConstants.CENTER);
+        JLabel helpLabel1 = new JLabel(FerretTest.locale.getString("variant.help"), SwingConstants.CENTER);
 
         //Input panel
 

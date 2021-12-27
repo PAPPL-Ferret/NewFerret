@@ -22,8 +22,7 @@ public class GenePanel extends JPanel {
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel helpLabel1 = new JLabel("<html> Aide : Exemple : ''CCR5'' comme nom de gène ou ''1234'' comme ID de gène" + "<br>" +
-                "Exemple pour plusieurs gènes à la fois : ''CCR5, HCP5'' si on entre des noms ou ''1234,  10866'' si on entre des ID", SwingConstants.CENTER);
+        JLabel helpLabel1 = new JLabel(FerretTest.locale.getString("gene.help"), SwingConstants.CENTER);
 
         //Input panel
 

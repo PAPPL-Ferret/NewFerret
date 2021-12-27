@@ -1,16 +1,11 @@
 package fr.ferret.view;
 
 import fr.ferret.FerretTest;
-import fr.ferret.view.panel.GenePanel;
+import fr.ferret.view.panel.*;
 import fr.ferret.view.panel.header.MenuPanel;
-import fr.ferret.view.panel.LocusPanel;
-import fr.ferret.view.panel.RegionPanel;
-import fr.ferret.view.panel.RunPanel;
-import fr.ferret.view.panel.VariantPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -26,7 +21,6 @@ public class FerretFrame extends JFrame
     private final RunPanel runPanel;
     private final GenePanel genePanel;
     private final VariantPanel variantPanel;
-
 
     public FerretFrame() {
         //Set look

@@ -2,16 +2,17 @@ package fr.ferret.view.panel.header;
 
 import fr.ferret.FerretTest;
 import fr.ferret.controller.settings.FerretConfig;
+import fr.ferret.view.FerretFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.URI;
 
 /**
- * Ferret frame menu
+ * Menu of the Ferret Frame
  */
 public class MenuPanel extends JMenuBar {
-    public MenuPanel(JFrame SNPFerret) {
+    public MenuPanel(FerretFrame ferretFrame) {
         JMenu ferretMenu = new JMenu("Ferret");
         JMenu helpMenu = new JMenu(FerretTest.locale.getString("menu.help"));
 
@@ -33,28 +34,28 @@ public class MenuPanel extends JMenuBar {
 
         // update window
         updateMenuItem.addActionListener(arg0 -> {
-            new UpdateFrame().showFrame(SNPFerret);
+            new UpdateFrame().showFrame(ferretFrame);
         });
 
         //Settings pane:
         FerretConfig config = FerretTest.config;
         settingsMenuItem.addActionListener(arg0 -> {
-            SettingsFrame settingsFrame = new SettingsFrame(config);
-            settingsFrame.setLocationRelativeTo(SNPFerret);
+            SettingsFrame settingsFrame = new SettingsFrame(ferretFrame, config);
+            settingsFrame.setLocationRelativeTo(ferretFrame);
             settingsFrame.setVisible(true);
         });
 
         //About window
         aboutMenuItem.addActionListener(arg0 -> {
             AboutFrame aboutFrame = new AboutFrame();
-            aboutFrame.setLocationRelativeTo(SNPFerret);
+            aboutFrame.setLocationRelativeTo(ferretFrame);
             aboutFrame.setVisible(true);
         });
 
         //Contact window
         contactMenuItem.addActionListener(e -> {
             ContactFrame contactFrame = new ContactFrame();
-            contactFrame.setLocationRelativeTo(SNPFerret);
+            contactFrame.setLocationRelativeTo(ferretFrame);
             contactFrame.setVisible(true);
         });
 

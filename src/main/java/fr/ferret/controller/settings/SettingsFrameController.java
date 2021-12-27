@@ -1,5 +1,6 @@
 package fr.ferret.controller.settings;
 
+import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.header.SettingsFrame;
 
 import javax.swing.*;
@@ -36,6 +37,7 @@ public class SettingsFrameController {
      */
     public static class SaveButtonListener implements ActionListener
     {
+        private final FerretFrame ferretFrame;
         private final SettingsFrame settingsFrame;
         private final JRadioButton[] phaseButtons;
         private final JRadioButton[] humanVersionButtons;
@@ -44,9 +46,10 @@ public class SettingsFrameController {
         private final JRadioButton freqFileButton;
         private final JRadioButton vcfFileButton;
 
-        public SaveButtonListener(SettingsFrame settingsFrame, JRadioButton[] phaseButtons, JRadioButton[] humanVersionButtons,
+        public SaveButtonListener(FerretFrame ferretFrame, SettingsFrame settingsFrame, JRadioButton[] phaseButtons, JRadioButton[] humanVersionButtons,
                                   JFormattedTextField mafText, JRadioButton allFilesButton, JRadioButton freqFileButton,
                                   JRadioButton vcfFileButton) {
+            this.ferretFrame = ferretFrame;
             this.settingsFrame = settingsFrame;
             this.phaseButtons = phaseButtons;
             this.humanVersionButtons = humanVersionButtons;
@@ -93,13 +96,7 @@ public class SettingsFrameController {
             }
             settingsFrame.getConfig().setSelectedHumanGenome(selectedv);
 
-            //TODO LINK WITH LOCUS PANEL : CONTROLLER ?
-            /*if (settingsFrame.getConfig().getSelectedHumanGenome() == HumanGenomeVersions.V38) {
-                questionMarkLocusInput.setToolTipText("hg38");
-            } else if (settingsFrame.getConfig().getSelectedHumanGenome() == HumanGenomeVersions.V19) {
-                questionMarkLocusInput.setToolTipText("hg19");
-            }*/
-
+            ferretFrame.getRegionPanel().reloadPanel();
             settingsFrame.dispose();
         }
     }

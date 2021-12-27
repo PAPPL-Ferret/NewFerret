@@ -131,6 +131,7 @@ public class LocusPanelController extends InputPanelController
         //Valid input
         if (isChrSelected && populationSelected && startSelected && endSelected && startEndValid && withinRange) {
             FerretTest.log.log(Level.INFO, "Starting gene research...");
+            //TODO LINK WITH MODEL
 
                         /*inputRegion[] queries = {new inputRegion(chrSelected, Integer.parseInt(startPosition), Integer.parseInt(endPosition))};
 

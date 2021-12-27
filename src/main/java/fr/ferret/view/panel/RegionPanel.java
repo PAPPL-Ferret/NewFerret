@@ -26,6 +26,13 @@ public class RegionPanel extends JPanel {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
+        initPanel();
+    }
+
+    /**
+     * Inits the panel : adds all components
+     */
+    private void initPanel() {
         JLabel label = new JLabel(FerretTest.locale.getString("region.input"), SwingConstants.LEFT);
         label.setFont(new Font("Calibri", Font.BOLD, 24));
         add(label, BorderLayout.NORTH);
@@ -43,6 +50,16 @@ public class RegionPanel extends JPanel {
         }
 
         add(container, BorderLayout.CENTER);
+    }
+
+    /**
+     * Reloads the contents of the panel <br>
+     * Called when the Ferret settings are modified
+     */
+    public void reloadPanel() {
+        removeAll();
+        initPanel();
+        updateUI();
     }
 
     /**
