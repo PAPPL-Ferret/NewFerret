@@ -2,27 +2,25 @@ package fr.ferret.view.panel.header;
 
 import fr.ferret.FerretTest;
 import fr.ferret.controller.settings.FerretConfig;
-import fr.ferret.controller.settings.FileOutputType;
 import fr.ferret.controller.settings.HumanGenomeVersions;
 import fr.ferret.controller.settings.Phases1KG;
+import fr.ferret.controller.settings.SettingsFrameController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Hashtable;
 
+/**
+ * The ferret settings frame
+ */
 public class SettingsFrame extends JFrame {
-    //TODO VIEW CONTROLLER-ISATION
-
+    private final FerretConfig config;
 
     public SettingsFrame(FerretConfig config) {
         super(FerretTest.locale.getString("settings.title"));
-
-        //TODO CLEAN THIS
-        final double[] mafThreshold = {0.0};
+        this.config = config;
 
         URL questionMarkURL = getClass().getResource("/questionMark25.png");
         ImageIcon questionMark = new ImageIcon(questionMarkURL);
@@ -84,20 +82,7 @@ public class SettingsFrame extends JFrame {
             mafPanel.add(MAFThresholdLabel);
             mafText.setColumns(5);
             mafText.setMaximumSize(mafText.getPreferredSize());
-            mafText.setValue(new Double(0));
             mafPanel.add(mafText);
-
-            mafText.addPropertyChangeListener(evt -> {
-                double localMAFThreshold = ((Number) mafText.getValue()).doubleValue();
-                if (localMAFThreshold > 0.5) {
-                    localMAFThreshold = 0.5;
-                    mafText.setValue(localMAFThreshold);
-                } else if (localMAFThreshold < 0.0) {
-                    localMAFThreshold = 0.0;
-                    mafText.setValue(localMAFThreshold);
-                }
-                mafSlider.setValue((int) (localMAFThreshold * 10000));
-            });
 
             mafSlider.setMajorTickSpacing(1000);
             mafSlider.setPaintTicks(true);
@@ -108,10 +93,12 @@ public class SettingsFrame extends JFrame {
             mafSlider.setValue(0);
             mafSlider.setPaintLabels(true);
             mafPanel.add(mafSlider);
-            mafSlider.addChangeListener(e -> {
-                double localMAFThreshold = mafSlider.getValue();
-                mafText.setValue(localMAFThreshold / 10000);
-            });
+
+            SettingsFrameController.MafInputListener mafController = new SettingsFrameController.MafInputListener(mafText, mafSlider);
+            mafText.addPropertyChangeListener(mafController);
+            mafSlider.addChangeListener(mafController);
+            mafText.setValue(config.getMafThreshold());
+
             mafPanel.add(questionMarkMAFThreshold);
             questionMarkMAFThreshold.setToolTipText(FerretTest.locale.getString("settings.maf.help"));
             mafPanel.add(Box.createHorizontalGlue());
@@ -138,7 +125,18 @@ public class SettingsFrame extends JFrame {
             settingsPanel.add(allFilesButton);
             settingsPanel.add(freqFileButton);
             settingsPanel.add(vcfFileButton);
-            allFilesButton.setSelected(true);
+            switch (config.getSelectedOutputType())
+            {
+                case ALL:
+                    allFilesButton.setSelected(true);
+                    break;
+                case FRQ:
+                    freqFileButton.setSelected(true);
+                    break;
+                case VCF:
+                    vcfFileButton.setSelected(true);
+                    break;
+            }
         }
 
         //Human genome versions
@@ -167,80 +165,17 @@ public class SettingsFrame extends JFrame {
         settingsButtonPanel.setLayout(new BoxLayout(settingsButtonPanel, BoxLayout.X_AXIS));
         settingsPanel.add(settingsButtonPanel);
         settingsButtonPanel.add(Box.createHorizontalGlue());
+
+        settingsCancel.addActionListener(new SettingsFrameController.CancelButtonListener(this));
         settingsButtonPanel.add(settingsCancel);
-        settingsCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < phaseButtons.length; i++) {
-                    JRadioButton button = phaseButtons[i];
-                    button.setSelected(i == config.getSelectedVersion().ordinal());
-                    button.setEnabled(true);
-                }
-                for (int i = 0; i < humanVersionButtons.length; i++) {
-                    JRadioButton button = humanVersionButtons[i];
-                    button.setSelected(i == config.getSelectedHumanGenome().ordinal());
-                    button.setEnabled(true); //TODO CONFLICT THINGS
-                }
 
-                mafText.setValue(new Double(mafThreshold[0]));
-                mafSlider.setValue((int) (mafThreshold[0] * 10000));
-
-                allFilesButton.setSelected(config.getSelectedOutputType() == FileOutputType.ALL);
-                freqFileButton.setSelected(config.getSelectedOutputType() == FileOutputType.FRQ);
-                vcfFileButton.setSelected(config.getSelectedOutputType() == FileOutputType.VCF);
-                vcfFileButton.setEnabled(true);
-
-                SettingsFrame.this.dispose();
-            }
-        });
+        settingsOK.addActionListener(new SettingsFrameController.SaveButtonListener(this, phaseButtons, humanVersionButtons, mafText, allFilesButton, freqFileButton, vcfFileButton));
         settingsButtonPanel.add(settingsOK);
 
-        settingsOK.addActionListener(e -> {
-            Phases1KG selected = null;
-            for (int i = 0; i < phaseButtons.length; i++) {
-                JRadioButton button = phaseButtons[i];
-                if (button.isSelected()) {
-                    selected = Phases1KG.values()[i];
-                    break;
-                }
-            }
-            if (selected == null) {
-                throw new IllegalStateException("No phases selected");
-            }
-            config.setSelectedVersion(selected);
-
-            mafThreshold[0] = ((Number) mafText.getValue()).doubleValue();
-            if (allFilesButton.isSelected()) {
-                config.setSelectedOutputType(FileOutputType.ALL);
-            } else if (freqFileButton.isSelected()) {
-                config.setSelectedOutputType(FileOutputType.FRQ);
-            } else if (vcfFileButton.isSelected()) {
-                config.setSelectedOutputType(FileOutputType.VCF);
-            }
-
-            HumanGenomeVersions selectedv = null;
-            for (int i = 0; i < humanVersionButtons.length; i++) {
-                JRadioButton button = humanVersionButtons[i];
-                if (button.isSelected()) {
-                    selectedv = HumanGenomeVersions.values()[i];
-                    break;
-                }
-            }
-            if (selectedv == null) {
-                throw new IllegalStateException("No human gene version selected");
-            }
-            config.setSelectedHumanGenome(selectedv);
-
-            //TODO LINK WITH LOCUS PANEL : CONTROLLER ?
-            if (config.getSelectedHumanGenome() == HumanGenomeVersions.V38) {
-                questionMarkLocusInput.setToolTipText("hg38");
-            } else if (config.getSelectedHumanGenome() == HumanGenomeVersions.V19) {
-                questionMarkLocusInput.setToolTipText("hg19");
-            }
-
-            SettingsFrame.this.dispose();
-        });
-
         this.pack();
+    }
+
+    public FerretConfig getConfig() {
+        return config;
     }
 }

@@ -32,29 +32,28 @@ public class MenuPanel extends JMenuBar {
         this.add(helpMenu);
 
         // update window
-        UpdateFrame updateFrame = new UpdateFrame();
         updateMenuItem.addActionListener(arg0 -> {
-            updateFrame.showFrame(SNPFerret);
+            new UpdateFrame().showFrame(SNPFerret);
         });
 
         //Settings pane:
         FerretConfig config = FerretTest.config;
-        SettingsFrame settingsFrame = new SettingsFrame(config);
         settingsMenuItem.addActionListener(arg0 -> {
+            SettingsFrame settingsFrame = new SettingsFrame(config);
             settingsFrame.setLocationRelativeTo(SNPFerret);
             settingsFrame.setVisible(true);
         });
 
         //About window
-        AboutFrame aboutFrame = new AboutFrame();
         aboutMenuItem.addActionListener(arg0 -> {
+            AboutFrame aboutFrame = new AboutFrame();
             aboutFrame.setLocationRelativeTo(SNPFerret);
             aboutFrame.setVisible(true);
         });
 
         //Contact window
-        ContactFrame contactFrame = new ContactFrame();
         contactMenuItem.addActionListener(e -> {
+            ContactFrame contactFrame = new ContactFrame();
             contactFrame.setLocationRelativeTo(SNPFerret);
             contactFrame.setVisible(true);
         });

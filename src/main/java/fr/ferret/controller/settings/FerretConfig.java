@@ -20,6 +20,11 @@ public class FerretConfig
      */
     private HumanGenomeVersions selectedHumanGenome = HumanGenomeVersions.V19;
 
+    /**
+     * The Minor Allele Frequency
+     */
+    private double mafThreshold;
+
     public Phases1KG getSelectedVersion() {
         return selectedVersion;
     }
@@ -32,6 +37,10 @@ public class FerretConfig
         return selectedHumanGenome;
     }
 
+    public double getMafThreshold() {
+        return mafThreshold;
+    }
+
     public void setSelectedVersion(Phases1KG selectedVersion) {
         this.selectedVersion = selectedVersion;
     }
@@ -42,5 +51,9 @@ public class FerretConfig
 
     public void setSelectedHumanGenome(HumanGenomeVersions selectedHumanGenome) {
         this.selectedHumanGenome = selectedHumanGenome;
+    }
+
+    public void setMafThreshold(double mafThreshold) {
+        this.mafThreshold = mafThreshold;
     }
 }
