@@ -3,7 +3,10 @@ package fr.ferret.view.region;
 import java.util.Arrays;
 
 /**
- * A world region of the 1KG project
+ * A <strong>world region</strong> of the 1KG project. <br>
+ * Currently, the world regions are "All populations", "Africa", "Europe", "East asia", "America" and "South asia". <br> <br>
+ *
+ * The <strong>zones</strong> are the populations inside these world regions. For Europe it's EUR, CEU, GBR, FIN, IBS and TSI.
  */
 public class Region {
     /**
@@ -11,7 +14,7 @@ public class Region {
      */
     private final String name;
     /**
-     * The zones of the region
+     * The zones (populations) of the region
      */
     private final String[] zones;
     /**
@@ -23,7 +26,7 @@ public class Region {
      * Creates a new Region
      *
      * @param name The name of the region (for translation)
-     * @param zones           The zones
+     * @param zones           The zones (populations) of the region
      * @param individualCount The individuals count for each zone, respectively
      */
     public Region(String name, String[] zones, int[] individualCount) {
