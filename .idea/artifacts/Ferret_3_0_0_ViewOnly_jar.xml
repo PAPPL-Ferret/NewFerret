@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Ferret-3.0.0-ViewOnly:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ferret_3_0_0_ViewOnly_jar</output-path>
+    <root id="archive" name="Ferret-3.0.0-ViewOnly.jar">
+      <element id="module-output" name="NewFerret" />
+    </root>
+  </artifact>
+</component>
