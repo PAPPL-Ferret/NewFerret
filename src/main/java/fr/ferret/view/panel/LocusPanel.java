@@ -1,6 +1,6 @@
 package fr.ferret.view.panel;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,14 +13,15 @@ public class LocusPanel extends JPanel {
     private final JComboBox<String> chromosomeList;
     private final JTextField inputStart;
     private final JTextField inputEnd;
+    private final JLabel titleLabel;
 
     public LocusPanel() {
         //Labels
 
-        JLabel titleLabel = new JLabel(FerretTest.locale.getString("locus.input"), SwingConstants.LEFT);
+        titleLabel = new JLabel(FerretMain.getLocale().getString("locus.input."+ FerretMain.getConfig().getSelectedHumanGenome().name()), SwingConstants.LEFT);
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
-        JLabel helpLabel = new JLabel(FerretTest.locale.getString("locus.help"), SwingConstants.CENTER);
+        JLabel helpLabel = new JLabel(FerretMain.getLocale().getString("locus.help"), SwingConstants.CENTER);
 
         //Input panel
 
@@ -28,7 +29,7 @@ public class LocusPanel extends JPanel {
         GridBagLayout inputPanelLayout = new GridBagLayout();
         inputPanel.setLayout(inputPanelLayout);
 
-        JLabel lab_chromosome = new JLabel(FerretTest.locale.getString("locus.chromosome"));
+        JLabel lab_chromosome = new JLabel(FerretMain.getLocale().getString("locus.chromosome"));
         String[] chromosomes = {" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"};
 
@@ -37,8 +38,8 @@ public class LocusPanel extends JPanel {
         chromosomeList = new JComboBox<>(chromosomes);
         chromosomeList.setSelectedIndex(0);
 
-        JLabel lab_start = new JLabel(FerretTest.locale.getString("locus.start"));
-        JLabel lab_end = new JLabel(FerretTest.locale.getString("locus.end"));
+        JLabel lab_start = new JLabel(FerretMain.getLocale().getString("locus.start"));
+        JLabel lab_end = new JLabel(FerretMain.getLocale().getString("locus.end"));
 
         inputStart = new JTextField();
         inputEnd = new JTextField();
@@ -100,6 +101,10 @@ public class LocusPanel extends JPanel {
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
         helpLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
     }
 
     public JComboBox<String> getChromosomeList() {

@@ -1,6 +1,6 @@
 package fr.ferret.controller;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -45,12 +45,12 @@ public class BrowseFileButtonListener implements ActionListener {
         JFileChooser saveFileChooser = new JFileChooser();
         String fileNameAndPath;
         saveFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        saveFileChooser.setDialogTitle(FerretTest.locale.getString("run.save"));
+        saveFileChooser.setDialogTitle(FerretMain.getLocale().getString("run.save"));
         int returnVal = saveFileChooser.showSaveDialog(panel);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = saveFileChooser.getSelectedFile();
             fileNameAndPath = file.getAbsolutePath();
-            selectedFileLabel.setText(FerretTest.locale.getString("browse.selectedfile") + " " + fileNameAndPath);
+            selectedFileLabel.setText(FerretMain.getLocale().getString("browse.selectedfile") + " " + fileNameAndPath);
             selectedFile = file;
         }
     }

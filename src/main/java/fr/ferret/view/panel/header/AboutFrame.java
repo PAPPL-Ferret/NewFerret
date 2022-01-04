@@ -1,21 +1,19 @@
 package fr.ferret.view.panel.header;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class AboutFrame extends JFrame {
     public AboutFrame() {
-        super(FerretTest.locale.getString("about.title"));
+        super(FerretMain.getLocale().getString("about.title"));
         JPanel aboutPanel = new JPanel();
-        JLabel ferretVersionLabel = new JLabel(FerretTest.locale.getString("about.version"));
-        JLabel ferretDateLabel = new JLabel(FerretTest.locale.getString("about.date"));
-        JTextArea ferretCitation = new JTextArea(FerretTest.locale.getString("about.citation"), 4, 50);
+        JLabel ferretVersionLabel = new JLabel(FerretMain.getLocale().getString("about.version"));
+        JLabel ferretDateLabel = new JLabel(FerretMain.getLocale().getString("about.date"));
+        JTextArea ferretCitation = new JTextArea(FerretMain.getLocale().getString("about.citation"), 4, 50);
 
-        LinkLabel ferretWebLabelAbout = new LinkLabel(FerretTest.locale.getString("about.link"));
+        LinkLabel ferretWebLabelAbout = new LinkLabel(FerretMain.getLocale().getString("about.link"));
 
         this.getContentPane().add(aboutPanel);
         this.setResizable(true);

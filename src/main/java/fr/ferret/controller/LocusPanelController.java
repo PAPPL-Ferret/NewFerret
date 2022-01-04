@@ -1,6 +1,6 @@
 package fr.ferret.controller;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.controller.settings.HumanGenomeVersions;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.LocusPanel;
@@ -62,7 +62,7 @@ public class LocusPanelController extends InputPanelController
                 startEndValid = (tempEndPos >= tempStartPos);
                 if (startEndValid) {
                     Map<String, Integer> chrMap = new HashMap<>();
-                    if (FerretTest.config.getSelectedHumanGenome() == HumanGenomeVersions.V19) {
+                    if (FerretMain.getConfig().getSelectedHumanGenome() == HumanGenomeVersions.hg19) {
                         //Avoid too much if/else
                         chrMap.put("X", 155270560);
                         chrMap.put("1", 249250621);
@@ -130,7 +130,7 @@ public class LocusPanelController extends InputPanelController
 
         //Valid input
         if (isChrSelected && populationSelected && startSelected && endSelected && startEndValid && withinRange) {
-            FerretTest.log.log(Level.INFO, "Starting gene research...");
+            FerretMain.getLog().log(Level.INFO, "Starting gene research...");
             //TODO LINK WITH MODEL
 
                         /*inputRegion[] queries = {new inputRegion(chrSelected, Integer.parseInt(startPosition), Integer.parseInt(endPosition))};
@@ -269,34 +269,34 @@ public class LocusPanelController extends InputPanelController
             });
             currFerretWorker.execute();*/
         } else { //Invalid input
-            StringBuffer errorMessage = new StringBuffer(FerretTest.locale.getString("run.fixerrors"));
+            StringBuffer errorMessage = new StringBuffer(FerretMain.getLocale().getString("run.fixerrors"));
             if (!isChrSelected) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectchr"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectchr"));
                 locusPanel.getChromosomeList().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!populationSelected) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectpop"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectpop"));
                 getFrame().getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!startSelected) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.startpos"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.startpos"));
                 locusPanel.getInputStart().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!endSelected) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.endpos"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.endpos"));
                 locusPanel.getInputEnd().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!startEndValid) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.invalidstart"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.invalidstart"));
                 locusPanel.getInputStart().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 locusPanel.getInputEnd().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (!withinRange) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.invalidpos.1") + " " + chrSelected + " " + FerretTest.locale.getString("run.invalidpos.2") + " " + chrEndBound);
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.invalidpos.1") + " " + chrSelected + " " + FerretMain.getLocale().getString("run.invalidpos.2") + " " + chrEndBound);
                 locusPanel.getInputStart().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 locusPanel.getInputEnd().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
-            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretMain.getLocale().getString("run.error"), JOptionPane.OK_OPTION);
         }
     }
 }

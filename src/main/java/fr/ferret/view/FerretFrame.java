@@ -1,6 +1,6 @@
 package fr.ferret.view;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.view.panel.*;
 import fr.ferret.view.panel.header.MenuPanel;
 
@@ -27,13 +27,13 @@ public class FerretFrame extends JFrame
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            FerretTest.log.log(Level.WARNING, "Failed to set ferret look and feel !", e);
+            FerretMain.getLog().log(Level.WARNING, "Failed to set ferret look and feel !", e);
         }
         //Set icon
         try {
             setIconImage(ImageIO.read(getClass().getResourceAsStream("/ferret.jpg")));
         } catch (IOException e) {
-            FerretTest.log.log(Level.WARNING, "Failed to set ferret icon !", e);
+            FerretMain.getLog().log(Level.WARNING, "Failed to set ferret icon !", e);
         }
 
         headerPanel = new MenuPanel(this);

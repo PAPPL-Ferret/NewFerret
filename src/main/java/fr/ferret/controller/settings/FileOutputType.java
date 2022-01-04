@@ -1,7 +1,7 @@
 package fr.ferret.controller.settings;
 
 /**
- * Types de fichiers voulus en sortie
+ * Output file types
  */
 public enum FileOutputType {
     ALL, FRQ, VCF

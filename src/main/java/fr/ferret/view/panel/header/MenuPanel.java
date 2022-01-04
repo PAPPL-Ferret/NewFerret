@@ -1,6 +1,6 @@
 package fr.ferret.view.panel.header;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.controller.settings.FerretConfig;
 import fr.ferret.view.FerretFrame;
 
@@ -14,14 +14,14 @@ import java.net.URI;
 public class MenuPanel extends JMenuBar {
     public MenuPanel(FerretFrame ferretFrame) {
         JMenu ferretMenu = new JMenu("Ferret");
-        JMenu helpMenu = new JMenu(FerretTest.locale.getString("menu.help"));
+        JMenu helpMenu = new JMenu(FerretMain.getLocale().getString("menu.help"));
 
-        JMenuItem settingsMenuItem = new JMenuItem(FerretTest.locale.getString("settings.title"));
-        JMenuItem updateMenuItem = new JMenuItem(FerretTest.locale.getString("update.title"));
-        JMenuItem exitMenuItem = new JMenuItem(FerretTest.locale.getString("menu.quit"));
-        JMenuItem aboutMenuItem = new JMenuItem(FerretTest.locale.getString("about.title"));
-        JMenuItem faqMenuItem = new JMenuItem(FerretTest.locale.getString("menu.faq"));
-        JMenuItem contactMenuItem = new JMenuItem(FerretTest.locale.getString("contact.title"));
+        JMenuItem settingsMenuItem = new JMenuItem(FerretMain.getLocale().getString("settings.title"));
+        JMenuItem updateMenuItem = new JMenuItem(FerretMain.getLocale().getString("update.title"));
+        JMenuItem exitMenuItem = new JMenuItem(FerretMain.getLocale().getString("menu.quit"));
+        JMenuItem aboutMenuItem = new JMenuItem(FerretMain.getLocale().getString("about.title"));
+        JMenuItem faqMenuItem = new JMenuItem(FerretMain.getLocale().getString("menu.faq"));
+        JMenuItem contactMenuItem = new JMenuItem(FerretMain.getLocale().getString("contact.title"));
 
         ferretMenu.add(settingsMenuItem);
         ferretMenu.add(updateMenuItem);
@@ -38,7 +38,7 @@ public class MenuPanel extends JMenuBar {
         });
 
         //Settings pane:
-        FerretConfig config = FerretTest.config;
+        FerretConfig config = FerretMain.getConfig();
         settingsMenuItem.addActionListener(arg0 -> {
             SettingsFrame settingsFrame = new SettingsFrame(ferretFrame, config);
             settingsFrame.setLocationRelativeTo(ferretFrame);
@@ -64,7 +64,7 @@ public class MenuPanel extends JMenuBar {
         faqMenuItem.addActionListener(arg0 -> {
             try {
                 //On met le lien dans la traduction : possible de faire des faq dans d'autres langues
-                Desktop.getDesktop().browse(new URI(FerretTest.locale.getString("faq.link")));
+                Desktop.getDesktop().browse(new URI(FerretMain.getLocale().getString("faq.link")));
             } catch (Exception e) {
                 e.printStackTrace();
             }

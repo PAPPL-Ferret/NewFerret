@@ -1,6 +1,6 @@
 package fr.ferret.controller;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.GenePanel;
 
@@ -121,7 +121,7 @@ public class GenePanelController extends InputPanelController {
 
         if ((geneListInputted || (geneFileImported && !geneFileError && !geneFileExtensionError)) && !invalidCharacter && popSelected) {
 
-            FerretTest.log.log(Level.INFO, "Starting gene research...");
+            FerretMain.getLog().log(Level.INFO, "Starting gene research...");
             //TODO LINK WITH MODEL
 
             // this should be combined with the one single call to Ferret later
@@ -266,20 +266,20 @@ public class GenePanelController extends InputPanelController {
         } else {
             StringBuffer errorMessage = new StringBuffer("Correct the following errors:");
             if (!geneListInputted && !geneFileImported) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectgene"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectgene"));
                 genePanel.getInputField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 genePanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (geneFileImported && geneFileError) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectgene.ferr"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectgene.ferr"));
                 genePanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if (geneFileImported && geneFileExtensionError) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectgene.fext"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectgene.fext"));
                 genePanel.getFileSelector().getRunButton().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
             if ((geneListInputted || geneFileImported) && invalidCharacter) {
-                errorMessage.append("\n " + FerretTest.locale.getString("run.selectgene.cerr"));
+                errorMessage.append("\n " + FerretMain.getLocale().getString("run.selectgene.cerr"));
                 if (geneListInputted) {
                     genePanel.getInputField().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
                 } else {
@@ -287,10 +287,10 @@ public class GenePanelController extends InputPanelController {
                 }
             }
             if (!popSelected) {
-                errorMessage.append("\n ").append(FerretTest.locale.getString("run.selectpop"));
+                errorMessage.append("\n ").append(FerretMain.getLocale().getString("run.selectpop"));
                 getFrame().getRegionPanel().setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
-            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretTest.locale.getString("run.error"), JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(getFrame(), errorMessage, FerretMain.getLocale().getString("run.error"), JOptionPane.OK_OPTION);
         }
     }
 }

@@ -1,6 +1,6 @@
 package fr.ferret.view.panel;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.controller.BrowseFileButtonListener;
 
 import javax.swing.*;
@@ -18,11 +18,11 @@ public class GenePanel extends JPanel {
 
     public GenePanel() {
         //Labels
-        JLabel titleLabel = new JLabel(FerretTest.locale.getString("gene.input"), SwingConstants.LEFT);
+        JLabel titleLabel = new JLabel(FerretMain.getLocale().getString("gene.input"), SwingConstants.LEFT);
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel helpLabel1 = new JLabel(FerretTest.locale.getString("gene.help"), SwingConstants.CENTER);
+        JLabel helpLabel1 = new JLabel(FerretMain.getLocale().getString("gene.help"), SwingConstants.CENTER);
 
         //Input panel
 
@@ -30,22 +30,22 @@ public class GenePanel extends JPanel {
         inputPanel.setLayout(new GridBagLayout());
 
         //JLabel lab_inputnameorid = new JLabel(FerretTest.locale.getString("gene.inputnameorid"));
-        JLabel labOr = new JLabel(FerretTest.locale.getString("gene.or"));
+        JLabel labOr = new JLabel(FerretMain.getLocale().getString("gene.or"));
         labOr.setBorder(BorderFactory.createEmptyBorder(0, 130, 0, 10));
         labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
         inputField = new JTextField();
 
-        JLabel selectedFile = new JLabel(FerretTest.locale.getString("gene.selectfile"));
-        JButton browseButton = new JButton(FerretTest.locale.getString("gene.browse"));
+        JLabel selectedFile = new JLabel(FerretMain.getLocale().getString("gene.selectfile"));
+        JButton browseButton = new JButton(FerretMain.getLocale().getString("gene.browse"));
         browseButton.setPreferredSize(new Dimension(200, 30));
         browseButton.setBackground(new Color(201, 157, 240));
         fileSelector = new BrowseFileButtonListener(this, browseButton, selectedFile);
         //RunButtonListener listener = new RunButtonListener(frame, browseButton);
 
         ButtonGroup buttonGroup = new ButtonGroup();
-        rdoName = new JRadioButton(FerretTest.locale.getString("gene.name"));
-        rdoID = new JRadioButton(FerretTest.locale.getString("gene.ID"));
+        rdoName = new JRadioButton(FerretMain.getLocale().getString("gene.name"));
+        rdoID = new JRadioButton(FerretMain.getLocale().getString("gene.ID"));
 
         GridBagConstraints c = new GridBagConstraints();
 

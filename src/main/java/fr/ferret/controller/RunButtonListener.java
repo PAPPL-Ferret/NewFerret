@@ -1,6 +1,6 @@
 package fr.ferret.controller;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.view.FerretFrame;
 
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class RunButtonListener implements ActionListener {
         JFileChooser saveFileChooser = new JFileChooser();
         String fileNameAndPath;
         saveFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        saveFileChooser.setDialogTitle(FerretTest.locale.getString("run.save"));
+        saveFileChooser.setDialogTitle(FerretMain.getLocale().getString("run.save"));
         int returnVal = saveFileChooser.showSaveDialog(frame.getRunPanel());
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = saveFileChooser.getSelectedFile();

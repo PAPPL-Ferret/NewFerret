@@ -1,5 +1,6 @@
 package fr.ferret.controller.settings;
 
+import fr.ferret.FerretMain;
 import fr.ferret.view.FerretFrame;
 import fr.ferret.view.panel.header.SettingsFrame;
 
@@ -96,6 +97,7 @@ public class SettingsFrameController {
             }
             settingsFrame.getConfig().setSelectedHumanGenome(selectedv);
 
+            ferretFrame.getLocusPanel().getTitleLabel().setText(FerretMain.getLocale().getString("locus.input."+ FerretMain.getConfig().getSelectedHumanGenome().name()));
             ferretFrame.getRegionPanel().reloadPanel();
             settingsFrame.dispose();
         }

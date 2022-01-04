@@ -1,7 +1,7 @@
 package fr.ferret.controller.settings;
 
 /**
- * Paramètres du programme
+ * The global config of Ferret
  */
 public class FerretConfig
 {
@@ -11,14 +11,14 @@ public class FerretConfig
     private Phases1KG selectedVersion = Phases1KG.V3;
 
     /**
-     * Type de fichier voulu en sortie
+     * Selected output file type
      */
     private FileOutputType selectedOutputType = FileOutputType.ALL;
 
     /**
-     * Version des gènes à utiliser
+     * Selected gene version
      */
-    private HumanGenomeVersions selectedHumanGenome = HumanGenomeVersions.V19;
+    private HumanGenomeVersions selectedHumanGenome = HumanGenomeVersions.hg19;
 
     /**
      * The Minor Allele Frequency

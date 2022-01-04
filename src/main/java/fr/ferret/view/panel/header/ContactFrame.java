@@ -1,16 +1,16 @@
 package fr.ferret.view.panel.header;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 
 import javax.swing.*;
 
 public class ContactFrame extends JFrame {
     public ContactFrame() {
-        super(FerretTest.locale.getString("contact.title"));
+        super(FerretMain.getLocale().getString("contact.title"));
 
         JPanel contactPanel = new JPanel();
-        JLabel contactPeopleLabel = new JLabel(FerretTest.locale.getString("contact.text"));
-        JTextArea contactEmailLabel = new JTextArea(FerretTest.locale.getString("contact.mail"));
+        JLabel contactPeopleLabel = new JLabel(FerretMain.getLocale().getString("contact.text"));
+        JTextArea contactEmailLabel = new JTextArea(FerretMain.getLocale().getString("contact.mail"));
 
         this.getContentPane().add(contactPanel);
         this.setResizable(true);

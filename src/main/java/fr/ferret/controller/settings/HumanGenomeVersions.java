@@ -1,9 +1,9 @@
 package fr.ferret.controller.settings;
 
 /**
- * Versions des gènes supportées
+ * Supported versions of the genes
  */
 public enum HumanGenomeVersions
 {
-    V19, V38
+    hg19, hg38
 }

@@ -1,6 +1,6 @@
 package fr.ferret.view.panel;
 
-import fr.ferret.FerretTest;
+import fr.ferret.FerretMain;
 import fr.ferret.controller.BrowseFileButtonListener;
 
 import javax.swing.*;
@@ -20,11 +20,11 @@ public class VariantPanel extends JPanel
 
     public VariantPanel() {
         //Labels
-        JLabel titleLabel = new JLabel(FerretTest.locale.getString("variant.input"), SwingConstants.LEFT);
+        JLabel titleLabel = new JLabel(FerretMain.getLocale().getString("variant.input"), SwingConstants.LEFT);
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         titleLabel.setForeground(new Color(18, 0, 127));
 
-        JLabel helpLabel1 = new JLabel(FerretTest.locale.getString("variant.help"), SwingConstants.CENTER);
+        JLabel helpLabel1 = new JLabel(FerretMain.getLocale().getString("variant.help"), SwingConstants.CENTER);
 
         //Input panel
 
@@ -32,23 +32,23 @@ public class VariantPanel extends JPanel
         inputPanel.setLayout(new GridBagLayout());
 
         //JLabel lab_inputnameorid = new JLabel(FerretTest.locale.getString("gene.inputnameorid"));
-        JLabel labOr = new JLabel(FerretTest.locale.getString("variant.or"));
+        JLabel labOr = new JLabel(FerretMain.getLocale().getString("variant.or"));
         labOr.setBorder(BorderFactory.createEmptyBorder(0, 130, 0, 10));
         labOr.setFont(new Font(labOr.getFont().getFontName(), Font.PLAIN, 16));
 
         variantIdField = new JTextField();
         bpField = new JTextField();
 
-        JLabel selectedFile = new JLabel(FerretTest.locale.getString("variant.selectfile"));
-        JButton browseButton = new JButton(FerretTest.locale.getString("variant.browse"));
+        JLabel selectedFile = new JLabel(FerretMain.getLocale().getString("variant.selectfile"));
+        JButton browseButton = new JButton(FerretMain.getLocale().getString("variant.browse"));
         browseButton.setPreferredSize(new Dimension(200, 30));
         browseButton.setBackground(new Color(201, 157, 240));
         fileSelector = new BrowseFileButtonListener(this, browseButton, selectedFile);
         //RunButtonListener listener = new RunButtonListener(frame, browseButton);
 
-        checkbox = new JCheckBox(FerretTest.locale.getString("variant.bpcheckbox"));
+        checkbox = new JCheckBox(FerretMain.getLocale().getString("variant.bpcheckbox"));
 
-        JLabel bp = new JLabel(FerretTest.locale.getString("variant.bp"));
+        JLabel bp = new JLabel(FerretMain.getLocale().getString("variant.bp"));
 
         GridBagConstraints c = new GridBagConstraints();
 
