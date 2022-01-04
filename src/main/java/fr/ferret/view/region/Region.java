@@ -36,14 +36,23 @@ public class Region {
         assert zones.length == Arrays.stream(individualCount).count() : "Zones length doesn't match to individuals count";
     }
 
+    /**
+     * @return The region name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return The zones (populations) of the region
+     */
     public String[] getZones() {
         return zones;
     }
 
+    /**
+     * @return The individuals count for each zone, respectively
+     */
     public int[] getIndividualCount() {
         return individualCount;
     }
