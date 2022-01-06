@@ -28,7 +28,7 @@ public class FerretMain
     private static final FerretConfig config = new FerretConfig();
 
     public static void main(String[] args) {
-        locale = ResourceBundle.getBundle("ferret", Locale.FRENCH);
+        locale = ResourceBundle.getBundle("ferret", Locale.getDefault());
         FerretFrame frame = new FerretFrame(); //Show ferret frame
         frame.setVisible(true);
     }
